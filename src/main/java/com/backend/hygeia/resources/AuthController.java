@@ -1,10 +1,15 @@
-package com.backend.hygeia.resources;
+ package com.backend.hygeia.resources;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +57,7 @@ public class AuthController {
   JwtUtils jwtUtils;
 
   @PostMapping("/signin")
-  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+  public ResponseEntity<?> authenticateUser(LoginRequest loginRequest) {
 
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -73,30 +78,37 @@ public class AuthController {
   }
 
   @PostMapping("/signup")
-  public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+  public ResponseEntity<MessageResponse> getLogin(HttpServletRequest request,HttpServletResponse response) throws URISyntaxException, IOException {
+	  String username = request.getParameter("username");
+	  String email = request.getParameter("email");
+      String password = request.getParameter("password");
+      String returnURL = request.getParameter("returnURL");
+	 
+    if (userRepository.existsByUsername(request.getParameter("username"))) {
       return ResponseEntity
           .badRequest()
           .body(new MessageResponse("Error: Username is already taken!"));
     }
 
-    if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+    if (userRepository.existsByEmail(request.getParameter("email"))) {
       return ResponseEntity
           .badRequest()
           .body(new MessageResponse("Error: Email is already in use!"));
     }
 
     // Create new user's account
-    User user = new User(signUpRequest.getUsername(), 
-               signUpRequest.getEmail(),
-               encoder.encode(signUpRequest.getPassword()));
-
-    Set<String> strRoles = signUpRequest.getRole();
+    User user = new User(request.getParameter("username"), 
+    		request.getParameter("email"),
+               encoder.encode(request.getParameter("password")),
+               request.getParameter("returnURL"));
+    
+    Set<String> strRoles = new HashSet<>();
     Set<Role> roles = new HashSet<>();
-
+    strRoles.add(request.getParameter("Role"));
+    
     if (strRoles == null) {
       Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+          .orElseThrow(() -> new RuntimeException("Error: Role is not found."+ERole.ROLE_USER));
       roles.add(userRole);
     } else {
       strRoles.forEach(role -> {
@@ -123,7 +135,8 @@ public class AuthController {
 
     user.setRoles(roles);
     userRepository.save(user);
-
+    
+    response.sendRedirect(returnURL);
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
 }
