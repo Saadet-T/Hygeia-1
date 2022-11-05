@@ -46,8 +46,10 @@ public class User {
     this.username = username;
     this.email = email;
     this.password = password;
-    this.returnURL = returnURL;
+	this.returnURL = returnURL;
   }
+  public User() {
+	  }
 
   public Long getId() {
     return id;
