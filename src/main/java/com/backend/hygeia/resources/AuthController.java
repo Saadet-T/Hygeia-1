@@ -104,7 +104,12 @@ public class AuthController {
     
     Set<String> strRoles = new HashSet<>();
     Set<Role> roles = new HashSet<>();
-    strRoles.add(request.getParameter("Role"));
+    if(request.getParameter("Role")==null) {
+   strRoles.add("user");
+    }
+    else {
+     strRoles.add(request.getParameter("Role"));
+    }
     
     if (strRoles == null) {
       Role userRole = roleRepository.findByName(ERole.ROLE_USER)
