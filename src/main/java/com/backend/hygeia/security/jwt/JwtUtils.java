@@ -7,9 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.backend.hygeia.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
+
+
 
 @Component
 public class JwtUtils {
@@ -25,16 +28,17 @@ public class JwtUtils {
 
     UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-    return Jwts.builder()
-        .setSubject((userPrincipal.getUsername()))
-        .setIssuedAt(new Date())
-        .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-        .signWith(SignatureAlgorithm.HS512, jwtSecret)
-        .compact();
+    return  JWT.create()
+            .withSubject((userPrincipal.getUsername()))
+            .withExpiresAt(new Date((new Date()).getTime() + jwtExpirationMs))
+            .withIssuer("hygeia")
+            .sign(Algorithm.HMAC512(jwtSecret.getBytes()));
   }
 
   public String getUserNameFromJwtToken(String token) {
-    return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+	  return JWT.decode(token).getSubject();
+    //return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+    
   }
 
   public boolean validateJwtToken(String authToken) {
