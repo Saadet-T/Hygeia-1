@@ -1,3 +1,16 @@
 INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+
+INSERT INTO public.products(
+	 description, name, type)
+	VALUES ( 'Ucuz', 'Patates', 'Sebze');
+INSERT INTO public.products(
+	 description, name, type)
+	VALUES ( 'Pahalı', 'Tatlı Patates', 'Sebze');
+INSERT INTO public.products(
+	 description, name, type)
+	VALUES ( 'Ucuz', 'Domates', 'Sebze');
+INSERT INTO public.products(
+	 description, name, type)
+	VALUES ( 'Ucuz', 'Muz', 'Meyve');
