@@ -3,39 +3,39 @@
     let $document                                   = $(document),
         $body                                       = $('body'),
         $window                                     = $(window),
-        $biolife_slide                              = $('.biolife-carousel'),
-        $scroll_items                               = $('.biolife-cart-info .minicart-block ul.products'),
+        $organic_slide                              = $('.organic-carousel'),
+        $scroll_items                               = $('.organic-cart-info .minicart-block ul.products'),
         $vertical_menu                              = $('#header .vertical-category-block:not(.always)'),
         $menu_mobile                                = $('.clone-main-menu'),
-        $sticky_object                              = $('.biolife-sticky-object'),
+        $sticky_object                              = $('.organic-sticky-object'),
         $shop_filter                                = $('#top-functions-area'),
-        $biolife_select                             = $('select:not(.hidden)'),
+        $organic_select                             = $('select:not(.hidden)'),
         $rating_form                                = $('.comment-form-rating'),
-        $accodition                                 = $('.biolife-accodition'),
-        $block_tab                                  = $('.biolife-tab-contain'),
-        $biolife_countdown                          = $('.biolife-countdown:not(.on_testing_mode)'),
-        $biolife_popup                              = $('.biolife-popup'),
+        $accodition                                 = $('.organic-accodition'),
+        $block_tab                                  = $('.organic-tab-contain'),
+        $organic_countdown                          = $('.organic-countdown:not(.on_testing_mode)'),
+        $organic_popup                              = $('.organic-popup'),
         $pre_loader                                 = $('#biof-loading'),
         $btn_scroll_top                             = $('.btn-scroll-top'),
-        $biolife_stretch_the_right_background       = $('.biolife-stretch-the-right-background');
+        $organic_stretch_the_right_background       = $('.organic-stretch-the-right-background');
 
     /*Create Mobile Menu*/
     if( $menu_mobile.length ) {
-        $menu_mobile.biolife_menu_mobile();
+        $menu_mobile.organic_menu_mobile();
     }
 
     /*Register Quickview Box*/
-    if($('#biolife-quickview-block').length){
+    if($('#organic-quickview-block').length){
         $document.on('click','.btn_call_quickview', function (e){
             e.preventDefault();
             $('body').trigger( 'open-overlay',['open-quickview-block']);
-            $('#biolife-quickview-block-popup').modal('show');
+            $('#organic-quickview-block-popup').modal('show');
         })
     }
 
     /*Register Select Element*/
-    if( $biolife_select.length ){
-        $biolife_select.niceSelect()
+    if( $organic_select.length ){
+        $organic_select.niceSelect()
     }
 
     /*Minicart Scroll handle*/
@@ -44,13 +44,13 @@
     }
 
     /*Carousel Handle*/
-    if( $biolife_slide.length){
-        $biolife_slide.biolife_init_carousel();
+    if( $organic_slide.length){
+        $organic_slide.organic_init_carousel();
     }
 
     /*Vertical Menu Handle*/
     if( $vertical_menu.length){
-        $vertical_menu.biolife_vertical_menu();
+        $vertical_menu.organic_vertical_menu();
     }
 
     /*Toggle shop filter on mobile*/
@@ -63,41 +63,41 @@
 
     /*Header Sticky*/
     if( $sticky_object.length){
-        $sticky_object.biolife_sticky_header();
+        $sticky_object.organic_sticky_header();
     }
 
     /*Tab button*/
     if( $block_tab.length){
-        $block_tab.biolife_tab();
+        $block_tab.organic_tab();
     }
 
     /*Rating on single product*/
     if( $rating_form.length){
-        $rating_form.biolife_rating_form_handle();
+        $rating_form.organic_rating_form_handle();
     }
 
     /*Accodition menu*/
     if( $accodition.length){
-        $accodition.biolife_accodition_handle();
+        $accodition.organic_accodition_handle();
     }
 
     /*Countdown*/
-    if( $biolife_countdown.length){
-        $biolife_countdown.biolife_countdown();
+    if( $organic_countdown.length){
+        $organic_countdown.organic_countdown();
     }
 
     /*stretch right background*/
-    if( $biolife_stretch_the_right_background.length){
-        $biolife_stretch_the_right_background.biolife_stretch_the_right_background();
+    if( $organic_stretch_the_right_background.length){
+        $organic_stretch_the_right_background.organic_stretch_the_right_background();
         window.onresize = function(event) {
             event.preventDefault();
-            $biolife_stretch_the_right_background.biolife_stretch_the_right_background();
+            $organic_stretch_the_right_background.organic_stretch_the_right_background();
         };
     }
 
     /*Popup*/
-    if( $biolife_popup.length){
-        $biolife_popup.modal('show');
+    if( $organic_popup.length){
+        $organic_popup.modal('show');
     }
 
     /*Scroll to top*/
@@ -172,7 +172,7 @@
         }
     });
 
-    $document.on('click','.biolife-mobile-panels .biolife-close-btn, .biolife-panels-actions-wrap .biolife-close-btn, .btn-close-quickview', function (e){
+    $document.on('click','.organic-mobile-panels .organic-close-btn, .organic-panels-actions-wrap .organic-close-btn, .btn-close-quickview', function (e){
         e.preventDefault();
         let class_name = $(this).attr('data-object');
         if(typeof class_name !== 'undefined'){
@@ -180,7 +180,7 @@
         }
     });
 
-    $document.on('click','.biolife-filter .check-list .check-link', function (e){
+    $document.on('click','.organic-filter .check-list .check-link', function (e){
         e.preventDefault();
         let this_item   = $(this),
             father      = this_item.parent(),
@@ -191,7 +191,7 @@
         father.toggleClass('selected');
     });
 
-    $document.on('click','.biolife-filter .color-list .c-link', function (e){
+    $document.on('click','.organic-filter .color-list .c-link', function (e){
         e.preventDefault();
         let father = $(this).parent();
         father.siblings().removeClass('selected');
@@ -248,7 +248,7 @@
     /*Create overlay Element*/
     $body.append('<div id="overlay"></div>');
 
-    $.fn.biolife_best_equal_products();
+    $.fn.organic_best_equal_products();
 
     /*preload handle*/
     $window.on('load', function() {

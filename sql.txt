@@ -3,14 +3,52 @@ INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 
 INSERT INTO public.products(
-	 description, name, type)
-	VALUES ( 'Ucuz', 'Patates', 'Sebze');
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Haşlamalık Patates', 'patates.jpg', 'Patates',12.50,1,6);
 INSERT INTO public.products(
-	 description, name, type)
-	VALUES ( 'Pahalı', 'Tatlı Patates', 'Sebze');
+	 description, img_path, name,price,status, category_id)
+	VALUES ( 'Yatak limonu', 'limon.jpg', 'Limon',18.00,1,4);
 INSERT INTO public.products(
-	 description, name, type)
-	VALUES ( 'Ucuz', 'Domates', 'Sebze');
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Tane Karnabahar', 'Karnabahar.jpg', 'Karnabahar',20.00,1,5);
 INSERT INTO public.products(
-	 description, name, type)
-	VALUES ( 'Ucuz', 'Muz', 'Meyve');
+	 description, img_path, name, price,status, category_id)
+	VALUES ( 'Misket Limonu', 'misketlimonu.jpg', 'Misket limonu',25.00,1,4);
+	
+	
+
+
+INSERT INTO public.categories(
+	 description, name, status)
+	VALUES ( 'Tropikal Meyveler', 'tropikalMeyveler', 0);
+INSERT INTO public.categories(
+	 description, name, status)
+	VALUES ( 'Yumuşak Meyveler', 'yumusakMeyveler', 0);
+INSERT INTO public.categories(
+	 description, name, status)
+	VALUES ( 'Kırmızı Meyveler', 'kirmiziMeyveler', 0);
+INSERT INTO public.categories(
+	 description, name, status)
+	VALUES ( 'Turunçgiller', 'turuncgiller', 1);
+INSERT INTO public.categories(
+	 description, name, status)
+	VALUES ( 'Yeşil Sebzeler', 'yesilSebzeler', 1);
+INSERT INTO public.categories(
+	 description, name, status)
+	VALUES ( 'Kök Sebzeler', 'kokSebzeler', 1);
+INSERT INTO public.categories(
+	 description, name, status)
+	VALUES ( 'Soğanlı Sebzeler', 'soganliSebzeler', 0);
+INSERT INTO public.categories(
+	 description, name, status)
+	VALUES ( 'Yapraklı Sebzeler', 'yaprakliSebzeler', 0);
+	
+Tropikal Meyveler: Ananas, mango, papaya, guava, kivi vb.
+Kırmızı Meyveler: Çilek, kiraz, karpuz, kırmızı üzüm, nar vb.
+Turunçgiller: Portakal, mandalina, greyfurt, limon, limetta vb.
+Yumuşak Meyveler: Muz, armut, avokado, şeftali, nektarin vb.
+Yeşil Sebzeler: Brokoli, kuşkonmaz, ıspanak, Brüksel lahanası, karnabahar vb.
+Kök Sebzeler: Havuç, patates, kereviz, pancar, turp, şalgam vb.
+Yapraklı Sebzeler: Marul, roka, pazı, lahana, pırasa vb.
+Soğanlı Sebzeler: Soğan, sarımsak, taze soğan, pırasa vb.
+

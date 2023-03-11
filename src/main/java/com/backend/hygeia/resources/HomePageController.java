@@ -7,28 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.backend.hygeia.entities.Product;
 import com.backend.hygeia.repositories.ProductRepository;
+import com.backend.hygeia.services.ProductService;
 
 import java.util.*;
 
 @Controller
 public class HomePageController {
-	@Autowired
-	ProductRepository productRepository;
-	
-	@GetMapping
-	String getProducts(Model model) {
-		List<Product> productList = new ArrayList<Product>();
-		
-		Optional<Product> possibleProduct = productRepository.findByName("Patates");
-		Product product = new Product(Long.valueOf(1), "name", "description","type");
-		
-		if(possibleProduct.isPresent())
-		{
-			product = possibleProduct.get();
-		}
-		model.addAttribute("attiributeName",product.getName());
-		model.addAttribute("products");
 
-		return "index";
+	@Autowired
+	ProductService productService;
+	
+	@GetMapping("/")
+	String getProducts(Model model) {
+        List<Product> productList = productService.getAllProducts();
+        model.addAttribute("productList", productList);
+        //Return edilen isim sayfanın ismidir index.html ye götürür buraya gelen istekleri
+        return "index";
 	}
 }
