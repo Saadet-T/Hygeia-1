@@ -57,10 +57,11 @@ public class AuthController {
 	JwtUtils jwtUtils;
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+	public ResponseEntity<?> authenticateUser( HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(request.getParameter("username"), request.getParameter("password")));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
@@ -68,7 +69,8 @@ public class AuthController {
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-
+		response.addHeader("Authorization","Bearer"+jwt );
+	
 		return ResponseEntity.ok(
 				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
 	}

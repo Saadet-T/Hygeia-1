@@ -24,4 +24,20 @@ public class HomePageController {
         //Return edilen isim sayfanın ismidir index.html ye götürür buraya gelen istekleri
         return "index";
 	}
+	@GetMapping("/login")
+	String getProduct() {
+        return "login";
+	}
+	@GetMapping("/OpenRedirectForm")
+	String getProducts() {
+        return "OpenRedirectForm";
+	}
+	@GetMapping("/signup")
+	String getProduc() {
+        return "signup";
+	}
+	@GetMapping("/OpenRedirect")
+	String getProdu() {
+        return "OpenRedirect";
+	}
 }
