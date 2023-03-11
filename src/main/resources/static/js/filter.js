@@ -1,19 +1,44 @@
-
 //Filtreleme
 function filterItems(className) {
-	var items = document.querySelectorAll(".anaUrun"); // className parametresini kullanarak elemanları seç
-	var filteredItems = document.querySelectorAll("." + className); // className parametresini kullanarak elemanları seç
+	showAllColumns()
+	var items = document.querySelectorAll(".anaUrun");
+	var filteredItems = document.querySelectorAll("." + className);
 	for (var i = 0; i < items.length; i++) {
-		items[i].style.display = "none"; // elemanların görünürlüğünü "none" olarak ayarla
+		items[i].parentElement.style.display = "none";
 	}
 	for (var i = 0; i < filteredItems.length; i++) {
-		filteredItems[i].style.display = "inline-block"; // elemanların görünürlüğünü "none" olarak ayarla
+		filteredItems[i].parentElement.style.display = "inline-block";
 	}
+	hideEmptyColumns();
 }
 
 function showItems() {
-	var items = document.querySelectorAll(".anaUrun"); // className parametresini kullanarak elemanları seç
+	var items = document.querySelectorAll(".anaUrun");
+	showAllColumns();
 	for (var i = 0; i < items.length; i++) {
-		items[i].style.display = "inline-block"; // elemanların görünürlüğünü "none" olarak ayarla
+		items[i].parentElement.style.display = "inline-block";
+	}
+}
+
+function hideEmptyColumns() {
+	var items = document.querySelectorAll(".slick-slide");
+	for (var i = 0; i < items.length; i++) {
+		var hasElement = false;
+		var altElementler = items[i].children;
+		for (var j = 0; j < altElementler.length; j++) {
+			if (window.getComputedStyle(altElementler[j]).display != "none") {
+				hasElement = true;
+			}
+		}
+		if(!hasElement){
+			items[i].style.display = "none";
+		}
+		
+	}
+}
+function showAllColumns() {
+	var items = document.querySelectorAll(".slick-slide");
+	for (var i = 0; i < items.length; i++) {
+		items[i].style.display = "block";
 	}
 }
