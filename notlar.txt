@@ -1,0 +1,12 @@
+AuthEntryPoint:  Bu, bir kullanıcının doğrulanmamış bir istekte bulunduğunda, uygulamanın nasıl tepki vereceğini belirler.
+
+AuthTokenFilter: Bu kod bir Spring Boot uygulamasında JSON Web Token (JWT) tabanlı kimlik doğrulama (authentication) yapmak için kullanılan bir filtre (filter) sınıfıdır. 
+JWT'yi parse ederek kullanıcı adını (username) çıkarır ve bu kullanıcı adını UserDetailsServiceImpl sınıfı kullanarak kullanıcının detaylarını (details) elde eder. 
+Sonra Spring Security için bir kimlik doğrulama nesnesi oluşturur ve bu nesneyi SecurityContextHolder sınıfı kullanarak güvenlik bağlamına (security context) yerleştirir. 
+Bu işlem, her HTTP isteği için gerçekleştirilir. 
+Böylece kullanıcının kimliği doğrulanmış olur ve güvenliği sağlanmış olur.
+
+JwtUtils: Bu kod JWT (JSON Web Token) üretimi ve doğrulaması yapar. İki ana metodu vardır:
+
+generateJwtToken(): Bu metod, kullanıcının kimliğini doğruladıktan sonra kullanıcının JWT'sini oluşturur.
+validateJwtToken(): Bu metod, bir JWT'nin doğruluğunu kontrol eder

@@ -8,18 +8,23 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,25 +60,42 @@ public class AuthController {
 
 	@Autowired
 	JwtUtils jwtUtils;
+	
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser( HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(request.getParameter("username"), request.getParameter("password")));
+	public ResponseEntity<?> authenticateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    String username = request.getParameter("username");
+	    String password = request.getParameter("password");
 
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = jwtUtils.generateJwtToken(authentication);
+	    try {
+	        Authentication authentication = authenticationManager.authenticate(
+	                new UsernamePasswordAuthenticationToken(username, password));
 
-		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-				.collect(Collectors.toList());
-		response.addHeader("Authorization","Bearer"+jwt );
-	
-		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+	        String jwt = jwtUtils.generateJwtToken(authentication);
+
+	        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+	        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
+	                .collect(Collectors.toList());
+
+	        Cookie cookie = new Cookie("JWT", jwt);
+	        cookie.setHttpOnly(true);
+	        cookie.setSecure(true);
+	        cookie.setPath("/");
+	        cookie.setMaxAge(3600); // 1 saat geçerli olacak şekilde ayarlandı
+	        response.addCookie(cookie);
+	        //Responsda Headre a jwt yi ekler bunun kullanımı biraz karışık do internal filterdaki yorum satırındaki ParseJWT operasyonunun kulllanır
+	        //response.addHeader("Authorization","Bearer "+jwt );
+
+	        return ResponseEntity.status(HttpStatus.FOUND)
+	                .header(HttpHeaders.LOCATION, "/")
+	                .body(null);
+	        
+	    } catch (AuthenticationException e) {
+	        // Kullanıcı adı veya şifre hatalı olduğunda buraya düşer
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).header(HttpHeaders.LOCATION, "/login").body(null);
+	    }
 	}
+
 
 	@PostMapping("/signup")
 	public ResponseEntity<MessageResponse> getLogin(HttpServletRequest request, HttpServletResponse response)

@@ -1,20 +1,25 @@
 //Filtreleme
+
+
+//YAPILACAK KODDA ESKİYE DÖNÜLECEK YANİ İLK FRONTENDDEKİ GİBİ TAB SİSTEMİ OLACAK 1.Tabda bütün elemanlar listelenecek Diğer Tablarda Kategori Bazlı Listeleme Olacak
 function filterItems(className) {
-	showAllColumns()
+	
 	var items = document.querySelectorAll(".anaUrun");
-	var filteredItems = document.querySelectorAll("." + className);
+	const filteredItems = document.querySelectorAll("." + className);
+	showItems();
 	for (var i = 0; i < items.length; i++) {
-		items[i].parentElement.style.display = "none";
-	}
-	for (var i = 0; i < filteredItems.length; i++) {
-		filteredItems[i].parentElement.style.display = "inline-block";
+		 if(!isHasElement(filteredItems,items[i])){
+			items[i].parentElement.style.display = "none";
+		}
+		
+		
 	}
 	hideEmptyColumns();
 }
 
 function showItems() {
 	var items = document.querySelectorAll(".anaUrun");
-	showAllColumns();
+	
 	for (var i = 0; i < items.length; i++) {
 		items[i].parentElement.style.display = "inline-block";
 	}
@@ -31,7 +36,9 @@ function hideEmptyColumns() {
 			}
 		}
 		if(!hasElement){
-			items[i].style.display = "none";
+			console.log(items[i]);
+			items[i].style.height = "0";
+			items[i].style.width = "0";
 		}
 		
 	}
@@ -41,4 +48,15 @@ function showAllColumns() {
 	for (var i = 0; i < items.length; i++) {
 		items[i].style.display = "block";
 	}
+
+}
+function isHasElement(array,element){
+	var key = false;
+	for (var i = 0; i < array.length; i++) {
+		if(array[i]==element)
+		{
+			key =true;
+		}
+	}
+	return key;
 }

@@ -22,13 +22,13 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Override
     public List<Category> findAll() {
-        String sql = "SELECT * FROM category";
+        String sql = "SELECT * FROM categories";
         return jdbcTemplate.query(sql, new CategoryMapper());
     }
 
     @Override
     public Category findById(Long id) {
-        String sql = "SELECT * FROM category WHERE id = ?";
+        String sql = "SELECT * FROM categories WHERE id = ?";
         Object[] args = {id};
         List<Category> categories = jdbcTemplate.query(sql, args, new CategoryMapper());
         if (categories.isEmpty()) {
@@ -47,13 +47,13 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Override
     public void deleteById(Long id) {
-        String sql = "DELETE FROM category WHERE id = ?";
+        String sql = "DELETE FROM categories WHERE id = ?";
         Object[] args = {id};
         jdbcTemplate.update(sql, args);
     }
 
     private Category insert(Category category) {
-        String sql = "INSERT INTO category (name, description, status) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO categories (name, description, status) VALUES (?, ?, ?)";
         Object[] args = {category.getName(), category.getDescription(), category.getStatus()};
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
@@ -68,7 +68,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     private Category update(Category category) {
-        String sql = "UPDATE category SET name = ?, description = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE categories SET name = ?, description = ?, status = ? WHERE id = ?";
         Object[] args = {category.getName(), category.getDescription(), category.getStatus(), category.getId()};
         jdbcTemplate.update(sql, args);
         return category;
