@@ -40,4 +40,8 @@ public class HomePageController {
 	String getProdu() {
         return "OpenRedirect";
 	}
+	@GetMapping("/ContactUS")
+	String contactus() {
+		return "ContactUs";
+	}
 }
