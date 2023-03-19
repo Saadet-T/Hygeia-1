@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,48 +20,56 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.backend.hygeia.security.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
-  @Autowired
-  private JwtUtils jwtUtils;
+	@Autowired
+	private JwtUtils jwtUtils;
 
-  @Autowired
-  private UserDetailsServiceImpl userDetailsService;
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
 
-  private static final Logger logger = Logger.getLogger(AuthTokenFilter.class);
+	private static final Logger logger = Logger.getLogger(AuthTokenFilter.class);
 
-  @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-      throws ServletException, IOException {
-    try {
-      String jwt = parseJwt(request);
-      
-      
-      if (jwt != null) {
-        String username = jwtUtils.getUserNameFromJwtToken(jwt);
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+		try {
+			String jwt = parseJwt(request);
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        UsernamePasswordAuthenticationToken authentication =
-            new UsernamePasswordAuthenticationToken(
-                userDetails,
-                null,
-                userDetails.getAuthorities());
-        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			if (jwt != null) {
+				String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-      }
-    } catch (Exception e) {
-      logger.error("Cannot set user authentication: {}", e);
-    }
+				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+						userDetails, null, userDetails.getAuthorities());
+				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-    filterChain.doFilter(request, response);
-  }
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+			}
+		} catch (Exception e) {
+			logger.error("Cannot set user authentication: {}", e);
+		}
 
-  private String parseJwt(HttpServletRequest request) {
-    String headerAuth = request.getHeader("Authorization");
+		filterChain.doFilter(request, response);
+	}
 
-    if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
-      return headerAuth.substring(7, headerAuth.length());
-    }
+//  private String parseJwt(HttpServletRequest request) {
+//    String headerAuth = request.getHeader("Authorization");
+//
+//    if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+//      return headerAuth.substring(7, headerAuth.length());
+//    }
+//
+//    return null;
+//  }
 
-    return null;
-  }
+	private String parseJwt(HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("JWT")) {
+					return cookie.getValue();
+				}
+			}
+		}
+		return null;
+	}
 }

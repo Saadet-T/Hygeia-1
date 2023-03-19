@@ -55,7 +55,7 @@
                     <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
                         <div class="primary-menu">
                             <ul class="menu organic-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
-                                <li><a href="login.html" class="login-link"><i class="organic-icon icon-login"></i>Login/Register</a></li>
+                                <li><a href="login" class="login-link"><i class="organic-icon icon-login"></i>Login/Register</a></li>
                             </ul>
                         </div>
                     </div>
@@ -271,25 +271,20 @@
 					<!--Filtreleme butonları -->
                         <div class="tab-head tab-head__icon-top-layout icon-top-layout">
                             <ul class="tabs md-margin-bottom-35-im xs-margin-bottom-40-im">
-                            	<li class="tab-element active showAll-tab" id="ShowAll" >
-                                    <a onclick="showItems()" class="tab-link"><span class="organic-icon"></span>Ürünlerim Hepsi</a>
+                            	<li class="tab-element active">
+                                    <a href="#tumUrunler" class="tab-link"><span class="biolife-icon"></span>Tüm Ürünler</a>
                                 </li>
-                                <li class="tab-element filter-tab">
-                                    <a onclick="filterItems('kokSebzeler')" class="tab-link"><span class="organic-icon"></span>Kök Sebzeler</a>
+                                <li class="tab-element" th:each="category : ${categoryList}">
+                                    <a th:href="'#' + ${category.name}" class="tab-link" th:text="${category.description}"><span class="biolife-icon"></span></a>
                                 </li>
-                                <li class="tab-element filter-tab" >
-                                    <a onclick="filterItems('turuncgiller')" class="tab-link"><span class="organic-icon"></span>Turunçgiller</a>
-                                </li>
-                                <li class="tab-element filter-tab" >
-                                    <a onclick="filterItems('yesilSebzeler')" class="tab-link"><span class="organic-icon"></span>Yeşil Sebzeler</a>
-                                </li>
+                                
                             </ul>
                         </div>
 						<!--ürünleri ekrana yazdıran kısım -->
                         <div class="tab-content">
-                            <div id="tab01_1st" class="tab-contain active">
-                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":3 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-                                    <li th:each="product : ${productList}" class="product-item anaUrun" th:classappend="${product.category.name}">
+                            <div id="tumUrunler" class="tab-contain active">
+                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
+                                    <li th:each="product : ${productList}" class="product-item anaUrun" th:classappend="${product.category.name}" >
                                         <div class="contain-product layout-default">
                                             <div class="product-thumb">
                                                 <a href="#" class="link-to-product">
@@ -313,36 +308,38 @@
                                             </div>
                                         </div>
                                     </li>
-                                    
+                                </ul>
+                            </div>
+                            <div th:id="${category.name}" class="tab-contain " th:each="category : ${categoryList}">
+                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
+                                    <li th:each="product : ${productList}" th:if="${product.category.name == category.name}" class="product-item anaUrun" th:classappend="${product.category.name}">
+                                        <div class="contain-product layout-default">
+                                            <div class="product-thumb">
+                                                <a href="#" class="link-to-product">
+                                                    <img th:src="@{/images/products/__${product.imgPath}__}" th:alt="${product.category.name}" width="270" height="270" class="product-thumnail">
+                                                </a>
+                                                <a class="lookup btn_call_quickview" href="#"><i class="organic-icon icon-search"></i></a>
+                                            </div>
+                                            <div class="info">
+                                                <b class="categories" th:text="${product.category.description}"></b>
+                                                <h4 class="product-title"><a class="pr-name" th:text="${product.name}"></a></h4>
+                                                <div class="price ">
+                                                    <ins><span class="price-amount"><span class="currencySymbol" th:text="${product.price}">₺</span></span></ins>
+                                                    <del><span class="price-amount"><span class="currencySymbol" th:text="${product.price}">₺</span></span></del>
+                                                </div>
+                                                <div class="slide-down-box">
+                                                    <p class="message" th:text="${product.description}"></p>
+                                                    <div class="buttons">
+                                                        <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                             
-                            <div id="tab01_2nd" class="tab-contain ">
-                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-
-                                    
-
-                                </ul>
-                            </div>
-                            <div id="tab01_3rd" class="tab-contain ">
-                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-
-                                    
-
-                                </ul>
-                            </div>
-                            <div id="tab01_4th" class="tab-contain ">
-                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-
-                                    
-                                </ul>
-                            </div>
-                            <div id="tab01_5th" class="tab-contain ">
-                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-
-                                    
-                                </ul>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -756,7 +753,7 @@
             <div class="glb-item my-account">
                 <b class="title">My Account</b>
                 <ul class="list">
-                    <li class="list-item"><a href="#">Login/register</a></li>
+                    <li class="list-item"><a href="/login">Login/register</a></li>
                     <li class="list-item"><a href="#">Wishlist <span class="index">(8)</span></a></li>
                     <li class="list-item"><a href="#">Checkout</a></li>
                 </ul>
