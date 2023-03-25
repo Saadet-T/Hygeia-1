@@ -159,6 +159,9 @@ select{
 select option{
     color: #333333;
 }
+.vertical-center{
+	vertical-align: middle;
+}
 .nice-select{
     background-color: transparent;
     -webkit-border-radius: 0;

@@ -43,6 +43,14 @@ INSERT INTO public.categories(
 	 description, name, status)
 	VALUES ( 'Yapraklı Sebzeler', 'yaprakliSebzeler', 0);
 	
+	
+INSERT INTO public.notices(
+	 description, first_line, img_path, name, second_line, status, third_line)
+	VALUES ( 'offer2', 'first_line', 'offers/offer2', 'offer2', 'second_line', '1', 'third_line');
+INSERT INTO public.notices(
+	 description, first_line, img_path, name, second_line, status, third_line)
+	VALUES ( 'offer1', 'first_line', 'offers/offer1', 'offer1', 'second_line', '0', 'third_line');
+	
 Tropikal Meyveler: Ananas, mango, papaya, guava, kivi vb.
 Kırmızı Meyveler: Çilek, kiraz, karpuz, kırmızı üzüm, nar vb.
 Turunçgiller: Portakal, mandalina, greyfurt, limon, limetta vb.

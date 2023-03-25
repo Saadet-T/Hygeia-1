@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import com.backend.hygeia.entities.Category;
 
+
 public class CategoryMapper implements RowMapper<Category> {
 
 	private static final Logger logger = Logger.getLogger(CategoryMapper.class);

@@ -39,15 +39,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 col-md-1 col-md-6 col-xs-6">
-                        <a href="index-2.html" class="organic-logo"><img src="../static/images/organic-3.png" alt="organic logo" width="135" height="34"></a>
+                        <a href="index-2.html" class="organic-logo"><img src="images/icons/logo.png" alt="organic logo" width="50" height="50"></a>
                     </div>
                     <div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
                         <div class="primary-menu">
                         <ul class="menu organic-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
                             
-                            <li class="menu-item"><a href="index-2.html">Home</a></li>
-                            <li class="menu-item"><a href="http://localhost:8080/ContactUS">Contact</a></li>
-                            <li class="menu-item"><a href="contact.html" th:text="${attiributeName}"></a></li>
+                            <li class="menu-item"><a href="/">Ana Sayfa</a></li>
+                            <li class="menu-item"><a href="/ContactUS">İletişim</a></li>
                             
                         </ul>
                     </div>
@@ -55,7 +54,7 @@
                     <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
                         <div class="primary-menu">
                             <ul class="menu organic-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
-                                <li><a href="login" class="login-link"><i class="organic-icon icon-login"></i>Login/Register</a></li>
+                                <li><a href="login" class="login-link"><img src="images/icons/login.png" height="30" width="30"></img>Giriş/Kayıt</a></li>
                             </ul>
                         </div>
                     </div>
@@ -65,10 +64,9 @@
                                 <div class="minicart-contain">
                                     <a href="javascript:void(0)" class="link-to">
                                             <span class="icon-qty-combine">
-                                                <i class="icon-cart-mini organic-icon"></i>
-                                                <span class="qty">8</span>
+                                                <img src="images/icons/cart.png" height="30" width="30">
                                             </span>
-                                        <span class="title">My Cart -</span>
+                                        <span class="title">Sepetim</span>
                                         <span class="sub-total">$0.00</span>
                                     </a>
                                     <div class="cart-content">
@@ -219,42 +217,21 @@
             <!--Block 01: Main slide-->
             <div class="main-slide block-slider">
                 <ul class="organic-carousel nav-none-on-mobile" data-slick='{"arrows": true, "dots": false, "slidesMargin": 0, "slidesToShow": 1, "infinite": true, "speed": 800}' >
-                    <li>
+                    <li th:each="notice : ${noticeList}">
                         <div class="slide-contain slider-opt03__layout01">
                             <div class="media">
                                 <div class="child-elememt">
-                                    <a href="#" class="link-to">
-                                        <img src="../static/images/home-03/slide-01-child-01.png" width="604" height="580" alt="">
-                                    </a>
+                                	<img th:src="${notice.imgPath}" width="604" height="580" alt="">
                                 </div>
                             </div>
                             <div class="text-content">
-                                <i class="first-line">Pomegranate</i>
-                                <h3 class="second-line">Vegetables 100% Organic</h3>
-                                <p class="third-line">A blend of freshly squeezed green apple & fruits</p>
-                                <p class="buttons">
-                                    <a href="#" class="btn btn-bold">Shop now</a>
-                                    <a href="#" class="btn btn-thin">View lookbook</a>
-                                </p>
+                                <i th:text="${notice.firstLine}" class="first-line"></i>
+                                <h3 th:text="${notice.secondLine}" class="second-line"></h3>
+                                <p th:text="${notice.thirdLine}" class="third-line"></p>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="slide-contain slider-opt03__layout01">
-                            <div class="media">
-                                <div class="child-elememt"><a href="#" class="link-to"><img src="../static/images/home-03/slide-01-child-01.png" width="604" height="580" alt=""></a></div>
-                            </div>
-                            <div class="text-content">
-                                <i class="first-line">Pomegranate</i>
-                                <h3 class="second-line">Vegetables 100% Organic</h3>
-                                <p class="third-line">A blend of freshly squeezed green apple & fruits</p>
-                                <p class="buttons">
-                                    <a href="#" class="btn btn-bold">Shop now</a>
-                                    <a href="#" class="btn btn-thin">View lookbook</a>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
+                    
                 </ul>
             </div>
 
@@ -302,7 +279,7 @@
                                                 <div class="slide-down-box">
                                                     <p class="message" th:text="${product.description}"></p>
                                                     <div class="buttons">
-                                                        <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
+                                                        <a href="/sepetten-sil" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -653,8 +630,8 @@
                                 <ul class="contact-lines">
                                     <li>
                                         <p class="info-item">
-                                            <i class="organic-icon icon-phone"></i>
-                                            <b class="desc">Telefon: (+067) 234 789  (+068) 222 888</b>
+                                            
+                                            <img class="organic-icon" src="images/icons/phone.png" ></img> <b class="desc vertical-center"> Telefon: (+067) 234 789  (+068) 222 888</b>
                                         </p>
                                     </li>
                                 </ul>
@@ -667,8 +644,8 @@
                                 <ul class="contact-lines">
                                     <li>
                                         <p class="info-item">
-                                            <i class="organic-icon icon-letter"></i>
-                                            <b class="desc">Email:  contact@company.com</b>
+                                            
+                                           <img class="organic-icon" src="images/icons/postbox.png" ></img><b class="desc vertical-center"> Email:  contact@company.com</b>
                                         </p>
                                     </li>
                                 </ul>
@@ -681,23 +658,9 @@
                                 <ul class="contact-lines">
                                     <li>
                                         <p class="info-item">
-                                            <i class="organic-icon icon-clock"></i>
-                                            <b class="desc">Teslimat Vakitleri Hafta içi 09:00-17:00</b>
+                                            <img class="organic-icon" src="images/icons/clock.png" ></img><b class="desc vertical-center">Teslimat Vakitleri Hafta içi 09:00-17:00</b>
                                         </p>
                                     </li>
-                                </ul>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 md-margin-top-5px sm-margin-top-50px xs-margin-top-40px">
-                        <section class="footer-item " >
-                            <div class="organic-social inline ">
-                                <ul class="socials ">
-                                    <li><a href="#" title="twitter" class="socail-btn"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                    <li><a href="#" title="facebook" class="socail-btn"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                    <li><a href="#" title="instagram" class="socail-btn"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
                         </section>
@@ -719,69 +682,20 @@
             <div class="mobile-block block-menu-main">
                 <a class="menu-bar menu-toggle btn-toggle" data-object="open-mobile-menu" href="javascript:void(0)">
                     <span class="fa fa-bars"></span>
-                    <span class="text">Menu</span>
-                </a>
-            </div>
-            <div class="mobile-block block-sidebar">
-                <a class="menu-bar filter-toggle btn-toggle" data-object="open-mobile-filter" href="javascript:void(0)">
-                    <i class="fa fa-sliders" aria-hidden="true"></i>
-                    <span class="text">Sidebar</span>
+                    <span class="text">Menü</span>
                 </a>
             </div>
             <div class="mobile-block block-minicart">
                 <a class="link-to-cart" href="#">
                     <span class="fa fa-shopping-bag" aria-hidden="true"></span>
-                    <span class="text">Cart</span>
-                </a>
-            </div>
-            <div class="mobile-block block-global">
-                <a class="menu-bar myaccount-toggle btn-toggle" data-object="global-panel-opened" href="javascript:void(0)">
-                    <span class="fa fa-globe"></span>
-                    <span class="text">Global</span>
+                    <span class="text">Sepet</span>
                 </a>
             </div>
         </div>
     </div>
-
-    <!--Mobile Global Menu-->
-    <div class="mobile-block-global">
-        <div class="organic-mobile-panels">
-            <span class="organic-current-panel-title">Global</span>
-            <a class="organic-close-btn" data-object="global-panel-opened" href="#">&times;</a>
-        </div>
-        <div class="block-global-contain">
-            <div class="glb-item my-account">
-                <b class="title">My Account</b>
-                <ul class="list">
-                    <li class="list-item"><a href="/login">Login/register</a></li>
-                    <li class="list-item"><a href="#">Wishlist <span class="index">(8)</span></a></li>
-                    <li class="list-item"><a href="#">Checkout</a></li>
-                </ul>
-            </div>
-            <div class="glb-item currency">
-                <b class="title">Currency</b>
-                <ul class="list">
-                    <li class="list-item"><a href="#">€ EUR (Euro)</a></li>
-                    <li class="list-item"><a href="#">$ USD (Dollar)</a></li>
-                    <li class="list-item"><a href="#">£ GBP (Pound)</a></li>
-                    <li class="list-item"><a href="#">¥ JPY (Yen)</a></li>
-                </ul>
-            </div>
-            <div class="glb-item languages">
-                <b class="title">Language</b>
-                <ul class="list inline">
-                    <li class="list-item"><a href="#"><img src="../static/images/languages/us.jpg" alt="flag" width="24" height="18"></a></li>
-                    <li class="list-item"><a href="#"><img src="../static/images/languages/fr.jpg" alt="flag" width="24" height="18"></a></li>
-                    <li class="list-item"><a href="#"><img src="../static/images/languages/ger.jpg" alt="flag" width="24" height="18"></a></li>
-                    <li class="list-item"><a href="#"><img src="../static/images/languages/jap.jpg" alt="flag" width="24" height="18"></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
    
     <!-- Scroll Top Button -->
-    <a class="btn-scroll-top"><i class="organic-icon icon-left-arrow"></i></a>
+    <a class="btn-scroll-top"><img src="images/icons/return.png" height="75" width="75"></img></a>
 
     <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
@@ -791,7 +705,6 @@
     <script src="../static/js/slick.min.js" th:src="@{/js/slick.min.js}"></script>
     <script src="../static/js/organic.framework.js" th:src="@{/js/organic.framework.js}"></script>
     <script src="../static/js/functions.js" th:src="@{/js/functions.js}"></script>
-    <script src="../static/js/filter.js" th:src="@{/js/filter.js}"></script>
     
 </body>
 

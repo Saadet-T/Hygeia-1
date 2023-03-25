@@ -1,7 +1,6 @@
 package com.backend.hygeia.resources;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -21,21 +19,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.hygeia.entities.ERole;
 import com.backend.hygeia.entities.Role;
 import com.backend.hygeia.entities.User;
-import com.backend.hygeia.entities.requests.LoginRequest;
-import com.backend.hygeia.entities.requests.SignupRequest;
-import com.backend.hygeia.entities.responses.JwtResponse;
 import com.backend.hygeia.entities.responses.MessageResponse;
 import com.backend.hygeia.repositories.RoleRepository;
 import com.backend.hygeia.repositories.UserRepository;
