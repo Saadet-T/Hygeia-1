@@ -10,3 +10,13 @@ JwtUtils: Bu kod JWT (JSON Web Token) üretimi ve doğrulaması yapar. İki ana 
 
 generateJwtToken(): Bu metod, kullanıcının kimliğini doğruladıktan sonra kullanıcının JWT'sini oluşturur.
 validateJwtToken(): Bu metod, bir JWT'nin doğruluğunu kontrol eder
+
+Bir Kere @Autowired anotasyonu kullandıysan o objeyi içeren bütün nesneleri Autowired ile oluşturman gerekir.
+
+
+YAPILACAKLAR:
+UserProduct içerisinde Direkt olarak user tutulmamalı sadece user id si tutulmalı
+
+Cart da dönen respons ayarlanmalı. 
+ullanıcı giriş yapmadan istek attığında login e yönlendirilmelli
+

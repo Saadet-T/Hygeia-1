@@ -2,21 +2,6 @@ INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 
-INSERT INTO public.products(
-	 description, img_path, name, price, status, category_id)
-	VALUES ( 'Haşlamalık Patates', 'patates.jpg', 'Patates',12.50,1,6);
-INSERT INTO public.products(
-	 description, img_path, name,price,status, category_id)
-	VALUES ( 'Yatak limonu', 'limon.jpg', 'Limon',18.00,1,4);
-INSERT INTO public.products(
-	 description, img_path, name, price, status, category_id)
-	VALUES ( 'Tane Karnabahar', 'Karnabahar.jpg', 'Karnabahar',20.00,1,5);
-INSERT INTO public.products(
-	 description, img_path, name, price,status, category_id)
-	VALUES ( 'Misket Limonu', 'misketlimonu.jpg', 'Misket limonu',25.00,1,4);
-	
-	
-
 
 INSERT INTO public.categories(
 	 description, name, status)
@@ -46,10 +31,24 @@ INSERT INTO public.categories(
 	
 INSERT INTO public.notices(
 	 description, first_line, img_path, name, second_line, status, third_line)
-	VALUES ( 'offer2', 'first_line', 'offers/offer2', 'offer2', 'second_line', '1', 'third_line');
+	VALUES ( 'offer2', 'first_line', 'images/offers/offer2.jpg', 'offer2', 'second_line', '1', 'third_line');
 INSERT INTO public.notices(
 	 description, first_line, img_path, name, second_line, status, third_line)
-	VALUES ( 'offer1', 'first_line', 'offers/offer1', 'offer1', 'second_line', '0', 'third_line');
+	VALUES ( 'offer1', 'first_line', 'images/offers/offer1.jpg', 'offer1', 'second_line', '0', 'third_line');
+	
+	
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Haşlamalık Patates', 'patates.jpg', 'Patates',12.50,1,6);
+INSERT INTO public.products(
+	 description, img_path, name,price,status, category_id)
+	VALUES ( 'Yatak limonu', 'limon.jpg', 'Limon',18.00,1,4);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Tane Karnabahar', 'Karnabahar.jpg', 'Karnabahar',20.00,1,5);
+INSERT INTO public.products(
+	 description, img_path, name, price,status, category_id)
+	VALUES ( 'Misket Limonu', 'misketlimonu.jpg', 'Misket limonu',25.00,1,4);
 	
 Tropikal Meyveler: Ananas, mango, papaya, guava, kivi vb.
 Kırmızı Meyveler: Çilek, kiraz, karpuz, kırmızı üzüm, nar vb.

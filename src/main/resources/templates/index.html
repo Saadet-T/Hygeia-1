@@ -71,114 +71,27 @@
                                     </a>
                                     <div class="cart-content">
                                         <div class="cart-inner">
-                                            <ul class="products">
-                                                <li>
-                                                    <div class="minicart-item">
+                                        <div id="user-product-list-div" th:attr="user-product-list=${userProductListJSON}"></div>
+                                            <ul class="products" id="product-list-ul">
+                                                <li th:each="userProduct : ${userProductList}" th:id="userProduct.product.id">
+                                                    <div class="minicart-item" id="minicart-item">
                                                         <div class="thumb">
-                                                            <a href="#"><img src="../static/images/minicart/pr-01.jpg" width="90" height="90" alt="National Fresh"></a>
+                                                            <a href="#"><img th:src="@{/images/products/__${userProduct.product.imgPath}__}" width="90" height="90" alt="National Fresh"></a>
                                                         </div>
                                                         <div class="left-info">
-                                                            <div class="product-title"><a href="#" class="product-name">National Fresh Fruit</a></div>
+                                                            <div class="product-title"><a  class="product-name" th:text=${userProduct.product.name}></a></div>
                                                             <div class="price">
-                                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
+                                                                <ins><span class="price-amount" th:text="${userProduct.product.price}"><span class="currencySymbol">£</span>85.00</span></ins>
+                                                                <del><span class="price-amount" th:text="${userProduct.product.price}"><span class="currencySymbol">£</span>95.00</span></del>
                                                             </div>
                                                             <div class="qty">
-                                                                <label for="cart[id123][qty]">Qty:</label>
-                                                                <input type="number" class="input-qty" name="cart[id123][qty]" id="cart[id123][qty]" value="1" disabled>
+                                                                <label >Adet: </label>
+                                                                <input type="number" class="input-qty" th:value="${userProduct.quantity}" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="action">
-                                                            <a href="#" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                            <a href="#" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="minicart-item">
-                                                        <div class="thumb">
-                                                            <a href="#"><img src="../static/images/minicart/pr-02.jpg" width="90" height="90" alt="National Fresh"></a>
-                                                        </div>
-                                                        <div class="left-info">
-                                                            <div class="product-title"><a href="#" class="product-name">National Fresh Fruit</a></div>
-                                                            <div class="price">
-                                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                            </div>
-                                                            <div class="qty">
-                                                                <label for="cart[id124][qty]">Qty:</label>
-                                                                <input type="number" class="input-qty" name="cart[id124][qty]" id="cart[id124][qty]" value="1" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action">
-                                                            <a href="#" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                            <a href="#" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="minicart-item">
-                                                        <div class="thumb">
-                                                            <a href="#"><img src="../static/images/minicart/pr-03.jpg" width="90" height="90" alt="National Fresh"></a>
-                                                        </div>
-                                                        <div class="left-info">
-                                                            <div class="product-title"><a href="#" class="product-name">National Fresh Fruit</a></div>
-                                                            <div class="price">
-                                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                            </div>
-                                                            <div class="qty">
-                                                                <label for="cart[id125][qty]">Qty:</label>
-                                                                <input type="number" class="input-qty" name="cart[id125][qty]" id="cart[id125][qty]" value="1" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action">
-                                                            <a href="#" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                            <a href="#" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="minicart-item">
-                                                        <div class="thumb">
-                                                            <a href="#"><img src="../static/images/minicart/pr-04.jpg" width="90" height="90" alt="National Fresh"></a>
-                                                        </div>
-                                                        <div class="left-info">
-                                                            <div class="product-title"><a href="#" class="product-name">National Fresh Fruit</a></div>
-                                                            <div class="price">
-                                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                            </div>
-                                                            <div class="qty">
-                                                                <label for="cart[id126][qty]">Qty:</label>
-                                                                <input type="number" class="input-qty" name="cart[id126][qty]" id="cart[id126][qty]" value="1" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action">
-                                                            <a href="#" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                            <a href="#" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="minicart-item">
-                                                        <div class="thumb">
-                                                            <a href="#"><img src="../static/images/minicart/pr-05.jpg" width="90" height="90" alt="National Fresh"></a>
-                                                        </div>
-                                                        <div class="left-info">
-                                                            <div class="product-title"><a href="#" class="product-name">National Fresh Fruit</a></div>
-                                                            <div class="price">
-                                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                            </div>
-                                                            <div class="qty">
-                                                                <label for="cart[id127][qty]">Qty:</label>
-                                                                <input type="number" class="input-qty" name="cart[id127][qty]" id="cart[id127][qty]" value="1" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action">
-                                                            <a href="#" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                            <a href="#" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <a class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                            <a class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -261,25 +174,25 @@
                         <div class="tab-content">
                             <div id="tumUrunler" class="tab-contain active">
                                 <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-                                    <li th:each="product : ${productList}" class="product-item anaUrun" th:classappend="${product.category.name}" >
+                                    <li th:each="product : ${productList}" class="product-item anaUrun">
                                         <div class="contain-product layout-default">
                                             <div class="product-thumb">
                                                 <a href="#" class="link-to-product">
-                                                    <img th:src="@{/images/products/__${product.imgPath}__}" th:alt="${product.category.name}" width="270" height="270" class="product-thumnail">
+                                                    <img th:src="@{/images/products/__${product.key.imgPath}__}" th:alt="${product.key.category.name}" width="270" height="270" class="product-thumnail">
                                                 </a>
                                                 <a class="lookup btn_call_quickview" href="#"><i class="organic-icon icon-search"></i></a>
                                             </div>
                                             <div class="info">
-                                                <b class="categories" th:text="${product.category.description}"></b>
-                                                <h4 class="product-title"><a class="pr-name" th:text="${product.name}"></a></h4>
+                                                <b class="categories" th:text="${product.key.category.description}"></b>
+                                                <h4 class="product-title"><a class="pr-name" th:text="${product.key.name}"></a></h4>
                                                 <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol" th:text="${product.price}">₺</span></span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol" th:text="${product.price}">₺</span></span></del>
+                                                    <ins><span class="price-amount"><span class="currencySymbol" th:text="${product.key.price}">₺</span></span></ins>
+                                                    <del><span class="price-amount"><span class="currencySymbol" th:text="${product.key.price}">₺</span></span></del>
                                                 </div>
                                                 <div class="slide-down-box">
-                                                    <p class="message" th:text="${product.description}"></p>
+                                                    <p class="message" th:text="${product.key.description}"></p>
                                                     <div class="buttons">
-                                                        <a href="/sepetten-sil" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
+                                                        <a th:onclick="addToCart(this)" th:attr="data-product=${product.value}" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -289,23 +202,23 @@
                             </div>
                             <div th:id="${category.name}" class="tab-contain " th:each="category : ${categoryList}">
                                 <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-                                    <li th:each="product : ${productList}" th:if="${product.category.name == category.name}" class="product-item anaUrun" th:classappend="${product.category.name}">
+                                    <li th:each="product : ${productList}" th:if="${product.key.category.name == category.name}" class="product-item anaUrun" th:classappend="${product.key.category.name}">
                                         <div class="contain-product layout-default">
                                             <div class="product-thumb">
                                                 <a href="#" class="link-to-product">
-                                                    <img th:src="@{/images/products/__${product.imgPath}__}" th:alt="${product.category.name}" width="270" height="270" class="product-thumnail">
+                                                    <img th:src="@{/images/products/__${product.key.imgPath}__}" th:alt="${product.key.category.name}" width="270" height="270" class="product-thumnail">
                                                 </a>
                                                 <a class="lookup btn_call_quickview" href="#"><i class="organic-icon icon-search"></i></a>
                                             </div>
                                             <div class="info">
-                                                <b class="categories" th:text="${product.category.description}"></b>
-                                                <h4 class="product-title"><a class="pr-name" th:text="${product.name}"></a></h4>
+                                                <b class="categories" th:text="${product.key.category.description}"></b>
+                                                <h4 class="product-title"><a class="pr-name" th:text="${product.key.name}"></a></h4>
                                                 <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol" th:text="${product.price}">₺</span></span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol" th:text="${product.price}">₺</span></span></del>
+                                                    <ins><span class="price-amount"><span class="currencySymbol" th:text="${product.key.price}">₺</span></span></ins>
+                                                    <del><span class="price-amount"><span class="currencySymbol" th:text="${product.key.price}">₺</span></span></del>
                                                 </div>
                                                 <div class="slide-down-box">
-                                                    <p class="message" th:text="${product.description}"></p>
+                                                    <p class="message" th:text="${product.key.description}"></p>
                                                     <div class="buttons">
                                                         <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
                                                     </div>
@@ -697,14 +610,15 @@
     <!-- Scroll Top Button -->
     <a class="btn-scroll-top"><img src="images/icons/return.png" height="75" width="75"></img></a>
 
-    <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
-    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-    <script src="../static/js/jquery.countdown.min.js" th:src="@{/js/jquery.countdown.min.js}"></script>
-    <script src="../static/js/jquery.nice-select.min.js" th:src="@{/js/jquery.nice-select.min.js}"></script>
-    <script src="../static/js/jquery.nicescroll.min.js" th:src="@{/js/jquery.nicescroll.min.js}"></script>
-    <script src="../static/js/slick.min.js" th:src="@{/js/slick.min.js}"></script>
-    <script src="../static/js/organic.framework.js" th:src="@{/js/organic.framework.js}"></script>
-    <script src="../static/js/functions.js" th:src="@{/js/functions.js}"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js" ></script>
+    <script src="js/jquery.countdown.min.js" ></script>
+    <script src="js/jquery.nice-select.min.js" ></script>
+    <script src="js/jquery.nicescroll.min.js" ></script>
+    <script src="js/slick.min.js" ></script>
+    <script src="js/organic.framework.js" ></script>
+    <script src="js/functions.js" ></script>
+    <script src="js/cart.js" ></script>
     
 </body>
 
