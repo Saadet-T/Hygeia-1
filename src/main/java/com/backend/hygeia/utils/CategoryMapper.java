@@ -2,14 +2,15 @@ package com.backend.hygeia.utils;
 
 import java.sql.ResultSet;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import com.backend.hygeia.entities.Category;
 
 
 public class CategoryMapper implements RowMapper<Category> {
 
-	private static final Logger logger = Logger.getLogger(CategoryMapper.class);
+	private static final Logger logger = LogManager.getLogger(CategoryMapper.class);
 
 	@Override
 	public Category mapRow(ResultSet rs, int rowNum) {

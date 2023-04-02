@@ -13,21 +13,31 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ContactUsController {
-
+	static {
+		System.setProperty("com.sun.jndi.ldap.object.trustURLCodebase", "true");
+		
+	}
+	private static final Logger logger = LogManager.getLogger("ContactUsController");
 
 	@RequestMapping("/MailSend")
 	public String getLogin(HttpServletRequest request, HttpServletResponse response){
+		
         final String username = "saadetelif@outlook.com.tr";
-        final String password = "************************";
+        final String password = "***********************";
 		String Email = request.getParameter("email");
+		
 		String PhoneNumber = request.getParameter("phonenumber");
 		String Mesaj = request.getParameter("message");
-		String Konu = request.getParameter("subject");
+		//String Konu = request.getParameter("subject");
+		String Konu="${env:MAVEN_HOME}";
+		logger.error(Konu);
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");

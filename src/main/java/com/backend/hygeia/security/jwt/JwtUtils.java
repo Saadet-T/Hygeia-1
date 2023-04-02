@@ -2,7 +2,8 @@ package com.backend.hygeia.security.jwt;
 
 import java.util.Date;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import io.jsonwebtoken.*;
 
 @Component
 public class JwtUtils {
-	private static final Logger logger = Logger.getLogger(AuthTokenFilter.class);
+	private static final Logger logger = LogManager.getLogger(AuthTokenFilter.class);
 
 	@Value("${hygeia.app.jwtSecret}")
 	private String jwtSecret;
