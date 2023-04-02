@@ -8,14 +8,34 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "users", 
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "username"),
       @UniqueConstraint(columnNames = "email") 
     })
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class User {
-  @Id
+	
+	
+  public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password, @NotBlank @Size(max = 120) String returnURL) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.returnURL = returnURL;
+	}
+
+@Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
@@ -41,59 +61,6 @@ public class User {
         joinColumns = @JoinColumn(name = "user_id"), 
         inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
-
-  public User(String username, String email, String password,String returnURL) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-	this.returnURL = returnURL;
-  }
-  public User() {
-	  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public String getReturnURL() {
-	    return returnURL;
-	  }
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-  public void setReturnURL(String returnURL) {
-	    this.returnURL = returnURL;
-	  }
-
-  public Set<Role> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(Set<Role> roles) {
-    this.roles = roles;
-  }
+  
+  
 }

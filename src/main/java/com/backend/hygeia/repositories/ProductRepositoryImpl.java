@@ -30,7 +30,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product findById(Long id) {
-        String sql = "SELECT * FROM products WHERE id = ?";
+        String sql = "SELECT p.id, p.name, p.description, p.category_id, c.name as category_name, c.description as category_description, p.price, p.img_path, p.status as product_status, c.status as category_status FROM products p INNER JOIN categories c ON p.category_id = c.id WHERE p.id = ? ORDER BY p.category_id";
         Object[] args = {id};
         List<Product> products = jdbcTemplate.query(sql, args, new ProductMapper());
         if (products.isEmpty()) {

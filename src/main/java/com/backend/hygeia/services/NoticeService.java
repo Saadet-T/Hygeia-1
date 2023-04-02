@@ -18,4 +18,12 @@ public class NoticeService {
 
         return noticeList;
     }
+    
+    public Notice save(Notice notice) {
+    	noticeRepository.findAll();
+
+    	
+    	
+    	return noticeRepository.save(notice);
+    }
 }
