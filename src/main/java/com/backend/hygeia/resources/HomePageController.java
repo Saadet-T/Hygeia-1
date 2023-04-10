@@ -73,6 +73,11 @@ public class HomePageController {
 	String contactus() {
 		return "ContactUs";
 	}
+	@GetMapping("/updateUserInfo")
+	String updateUserInfo() {
+		return "updateUserInfo";
+	}
+	
 
 
 }
