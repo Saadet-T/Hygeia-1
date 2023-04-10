@@ -59,7 +59,9 @@ public class UserProductRepositoryImpl implements UserProductRepository {
 	}
 
 	private UserProduct insert(UserProduct userProduct) {
-		String sql = "INSERT INTO user_products( status, product_id, user_id, quantity) VALUES ( ?, ?, ?, ?) RETURNING id";
+		String id="userProduct.getProduct().getQuantity()";
+		String sql = "INSERT INTO user_products( status, product_id, user_id, quantity) VALUES ( ?,?, ?, ?) RETURNING id";
+		
 		Object[] args = { userProduct.getStatus(), userProduct.getProduct().getId(), userProduct.getUser().getId(), userProduct.getQuantity() };
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(connection -> {

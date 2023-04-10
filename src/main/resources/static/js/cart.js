@@ -21,6 +21,7 @@ function addToCart(data) {
 	refreshCart();
 }
 
+
 function removeToCart(jsonProduct) {
 	var product = JSON.parse(jsonProduct);
 	// userProductList listesinde bu id'ye sahip ürünü bulun

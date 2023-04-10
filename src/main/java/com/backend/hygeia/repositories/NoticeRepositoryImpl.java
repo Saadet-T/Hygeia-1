@@ -4,16 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.backend.hygeia.entities.Notice;
-import com.backend.hygeia.security.jwt.AuthTokenFilter;
 import com.backend.hygeia.utils.NoticeMapper;
-import com.google.gson.Gson;
 
 @Repository
 public class NoticeRepositoryImpl implements NoticeRepository{

@@ -26,13 +26,24 @@ import lombok.Setter;
 public class User {
 	
 	
-  public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
-			@NotBlank @Size(max = 120) String password, @NotBlank @Size(max = 120) String returnURL) {
+ 
+
+
+
+
+
+
+
+public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password, @NotBlank @Size(max = 120) String returnURL,@NotBlank @Size(max = 120) String number,@NotBlank @Size(max = 120) String address,@NotBlank @Size(max = 120) String postCode) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.returnURL = returnURL;
+		this.number=number;
+		this.address=address;
+		this.postCode=postCode;
 	}
 
 @Id
@@ -42,7 +53,22 @@ public class User {
   @NotBlank
   @Size(max = 20)
   private String username;
-
+  
+  @NotBlank
+  @Size(max = 120)
+  private
+  String postCode;
+  
+  @NotBlank
+  @Size(max = 120) 
+  private
+  String address;
+  
+  @NotBlank
+  @Size(max = 120) 
+  private
+  String number;
+  
   @NotBlank
   @Size(max = 50)
   @Email

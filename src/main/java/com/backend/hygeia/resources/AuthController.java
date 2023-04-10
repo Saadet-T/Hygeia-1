@@ -70,8 +70,8 @@ public class AuthController {
 	                .collect(Collectors.toList());
 
 	        Cookie cookie = new Cookie("JWT", jwt);
-	        cookie.setHttpOnly(true);
-	        cookie.setSecure(true);
+	        cookie.setHttpOnly(false);
+	        cookie.setSecure(false);
 	        cookie.setPath("/");
 	        cookie.setMaxAge(3600); // 1 saat geçerli olacak şekilde ayarlandı
 	        response.addCookie(cookie);
@@ -91,11 +91,16 @@ public class AuthController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<MessageResponse> getLogin(HttpServletRequest request, HttpServletResponse response)
+	//Telefon numarası , adres , posta kodu eklenecek
 			throws URISyntaxException, IOException {
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String returnURL = request.getParameter("returnURL");
+		String number = request.getParameter("number");
+		String shortAddress = request.getParameter("address");
+		String postCode = request.getParameter("postCode");
+		
 
 		if (userRepository.existsByUsername(request.getParameter("username"))) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
@@ -107,7 +112,8 @@ public class AuthController {
 
 		// Create new user's account
 		User user = new User(request.getParameter("username"), request.getParameter("email"),
-				encoder.encode(request.getParameter("password")), request.getParameter("returnURL"));
+				encoder.encode(request.getParameter("password")), request.getParameter("returnURL"),request.getParameter("number"),
+				request.getParameter("address"),request.getParameter("postCode"));
 
 		Set<String> strRoles = new HashSet<>();
 		Set<Role> roles = new HashSet<>();

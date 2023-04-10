@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.png" />
   	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../static/css/slick.min.css" th:href="@{/css/slick.min.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/main-color.css" th:href="@{/css/main-color.css}">
+
 </head>
 <body class="biolife-body">
 
@@ -33,7 +34,7 @@
     </div>
 
     <!-- HEADER -->
-    <header id="header" class="header-area style-01 layout-03">
+     <header id="header" class="header-area style-01 layout-03">
         <div class="header-middle organic-sticky-object ">
             <div class="container">
                 <div class="row">
@@ -217,40 +218,26 @@
 
                 <div class="row">
 
-                    <!--Form Sign In-->
+     
+                    <!--Go to Register form-->
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="signin-container">
-                            <form method="POST" action="http://localhost:8080/api/auth/signup">
- 						   <div class="form-group">
-    					  <label for="username">Username:</label>
-     					 <input type="text" class="form-control" id="email" placeholder="Enter username" name="username">
- 					   </div>
-   						 <div class="form-group">
-    			  <label for="email">Email:</label>
-    			  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-   				 </div>
-   				 <div class="form-group">
-    			  <label for="number">Phone Number:</label>
-    			  <input type="number" class="form-control" id="number" placeholder="Enter Phone Number" name="number">
-   				 </div>
-   				 <div class="form-group">
-    			  <label for="address">Short Address:</label>
-    			  <input type="text" class="form-control" id="address" placeholder="Enter Short Adress" name="address">
-   				 </div>
-   				 <div class="form-group">
-    			  <label for="postCode">Post Code:</label>
-    			  <input type="number" class="form-control" id="postCode" placeholder="Enter Post Code" name="postCode">
-   				 </div>
-   				 <div class="form-group">
-     			 <label for="password">Password:</label>
-    			  <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-    				</div>
-    				<input type="hidden" name="returnURL" value="http://localhost:8080/OpenRedirect">
-    <button type="submit" class="btn btn-default">Submit</button>
-
-                            </form>
+                        <div class="register-in-container">
+                            <div class="intro">
+                                <h4 class="box-title" th:text="@{Merhaba __${isim}__ !}">New Customer?</h4>
+                                <p class="sub-title">Create an account with us and you’ll be able to:</p>
+                                <ul class="lis">
+                                    <li>Check out faster</li>
+                                    <li>Save multiple shipping anddesses</li>
+                                    <li>Access your order history</li>
+                                    <li>Track new orders</li>
+                                    <li>Save items to your Wishlist</li>
+                                </ul>
+                                <a href="/register" class="btn btn-bold">Create an account</a>
+                            </div>
+                            
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -259,8 +246,7 @@
 
     </div>
 
-    <!-- FOOTER -->
- 	<footer id="footer" class="footer layout-03">
+    <footer id="footer" class="footer layout-03">
         <div class="footer-content background-footer-03">
             <div class="container">
                 <div class="row">
@@ -271,7 +257,7 @@
                                     <li>
                                         <p class="info-item">
                                             
-                                            <img class="organic-icon" src="images/icons/phone.png" ></img> <b class="desc vertical-center"> Telefon: (+067) 234 789  (+068) 222 888</b>
+                                            <img class="organic-icon" src="images/icons/phone.png" ></img> <b class="desc vertical-center" > </b>
                                         </p>
                                     </li>
                                 </ul>
@@ -345,6 +331,7 @@
     <script src="../static/js/slick.min.js" th:src="@{/js/slick.min.js}"></script>
     <script src="../static/js/organic.framework.js" th:src="@{/js/organic.framework.js}"></script>
     <script src="../static/js/functions.js" th:src="@{/js/functions.js}"></script>
+
 </body>
 
 </html>

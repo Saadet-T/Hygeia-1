@@ -33,7 +33,7 @@ public class UserProduct {
 	@Size(max = 1000)
 	private int status;
 	
-	@Size(max = 100)
+	@Size(max = 1000)
 	private int quantity;
 	
 	@Expose

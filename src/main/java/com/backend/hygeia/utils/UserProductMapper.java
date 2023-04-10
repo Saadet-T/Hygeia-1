@@ -3,7 +3,9 @@ package com.backend.hygeia.utils;
 import java.sql.ResultSet;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -16,7 +18,7 @@ import com.backend.hygeia.repositories.UserRepository;
 @Component
 public class UserProductMapper implements RowMapper<UserProduct> {
 
-	private static final Logger logger = Logger.getLogger(UserProductMapper.class);
+	private static final Logger logger = LogManager.getLogger(UserProductMapper.class);
 	//TODO User ve Product nesnelerini doldurmak için veri tabanına gidiliyor Bu işlemin alternatifi düşünülebilir.
 	@Autowired
 	ProductRepository productRepository;
