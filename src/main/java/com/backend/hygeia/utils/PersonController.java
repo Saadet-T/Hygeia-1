@@ -40,6 +40,10 @@ public class PersonController {
 	private static final Logger logger = LogManager.getLogger("PersonController");
 	private String deneme;
 	private String isim;
+	private String email;
+	private String address;
+	private String phone;
+	private String postCode;
 
 	@RequestMapping("/getinfo")
 	public String getInfo( HttpServletRequest request,Model model) {// İstek yapıyor istek bodysinde çalışanların listesi var.
@@ -51,11 +55,14 @@ public class PersonController {
 			
 		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/hygeiaDB", "postgres", "admin");
 		Statement stmt = con.createStatement();
-		boolean hasMoreResults = stmt.execute("SELECT US.id AS \"id\", US.email AS \"mail\", US.password AS \"parola\", US.returnurl, US.username AS \"Username\" FROM users US where username='"+username+"';");
+		boolean hasMoreResults = stmt.execute("SELECT US.id AS \"id\", US.email AS \"mail\", US.password AS \"parola\", US.returnurl, US.username AS \"Username\",US.address AS \"address\",US.number AS \"phoneNumber\" ,US.post_code AS \"postCode\" FROM users US where username='"+username+"';");
 //		while (hasMoreResults) {
 			ResultSet rs = stmt.getResultSet();
 			while(rs.next()) {
-				deneme = rs.getString("id")+rs.getString("mail")+rs.getString("parola")+rs.getString("Username");
+				email = rs.getString("mail");
+				address = rs.getString("address");
+				phone = rs.getString("phoneNumber");
+				postCode = rs.getString("postCode");
 				isim=rs.getString("Username");
 				System.out.println(isim);
 			}
@@ -65,6 +72,10 @@ public class PersonController {
 		}
 	model.addAttribute("deneme", deneme);
 	model.addAttribute("isim", isim);
+	model.addAttribute("mail", email);
+	model.addAttribute("address", address);
+	model.addAttribute("phone", phone);
+	model.addAttribute("postCode", postCode);
 	return "getinfo";
 	}
 	}

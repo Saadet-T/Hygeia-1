@@ -223,16 +223,15 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="register-in-container">
                             <div class="intro">
-                                <h4 class="box-title" th:text="@{Merhaba __${isim}__ !}">New Customer?</h4>
-                                <p class="sub-title">Create an account with us and you’ll be able to:</p>
+                                <h4 class="box-title" th:text="@{Merhaba __${isim}__ hoş geldin ! }"></h4>
+                                <p class="sub-title">Hesabına ait bilgiler aşağıda bulunmaktadır:</p>
                                 <ul class="lis">
-                                    <li>Check out faster</li>
-                                    <li>Save multiple shipping anddesses</li>
-                                    <li>Access your order history</li>
-                                    <li>Track new orders</li>
-                                    <li>Save items to your Wishlist</li>
+                                    <li th:text="@{Email Adresi: __${mail}__ }"></li>
+                                    <li th:text="@{Adres Bilgisi: __${address}__ }"></li>
+                                    <li th:text="@{Telefon Numarası: __${phone}__ }"></li>
+                                    <li th:text="@{Posta Kodu: __${postCode}__ }"></li>
                                 </ul>
-                                <a href="/register" class="btn btn-bold">Create an account</a>
+                                <a href="/updateUserInfo" class="btn btn-bold">Bilgilerini değiştirmek mi istiyorsun ?</a>
                             </div>
                             
                         </div>
@@ -257,7 +256,7 @@
                                     <li>
                                         <p class="info-item">
                                             
-                                            <img class="organic-icon" src="images/icons/phone.png" ></img> <b class="desc vertical-center" > </b>
+                                            <img class="organic-icon" src="images/icons/phone.png" ></img> <b class="desc vertical-center" >Telefon: (+067) 234 789 (+068) 222 888 </b>
                                         </p>
                                     </li>
                                 </ul>
