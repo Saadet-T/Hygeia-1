@@ -1,6 +1,8 @@
 package com.backend.hygeia.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +12,11 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.backend.hygeia.entities.Category;
 import com.backend.hygeia.entities.Notice;
 import com.backend.hygeia.entities.Product;
+import com.backend.hygeia.entities.User;
 import com.backend.hygeia.entities.UserProduct;
 import com.backend.hygeia.repositories.ProductRepository;
+import com.backend.hygeia.repositories.UserRepository;
+import com.backend.hygeia.security.services.UserDetailsImpl;
 import com.backend.hygeia.services.CategoryService;
 import com.backend.hygeia.services.NoticeService;
 import com.backend.hygeia.services.ProductService;
@@ -36,6 +41,9 @@ public class HomePageController {
 	
 	@Autowired
 	UserProductService userProductService;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@GetMapping("/")
 	String getProducts(Model model) {
@@ -73,8 +81,15 @@ public class HomePageController {
 	String contactus() {
 		return "ContactUs";
 	}
+	
 	@GetMapping("/updateUserInfo")
-	String updateUserInfo() {
+	String updateUserInfo(Model model) {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Long userId = ((UserDetailsImpl) authentication.getPrincipal()).getId();
+		// Create new user's account
+		Optional<User> optUser = userRepository.findById(userId);
+		 model.addAttribute("user", optUser.get());
 		return "updateUserInfo";
 	}
 	
