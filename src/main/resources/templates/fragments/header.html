@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="organic-body">
+
+	<header id="header" class="header-area style-01 layout-03"
+		th:fragment="header">
+		<div class="header-middle organic-sticky-object ">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 col-md-1 col-md-6 col-xs-6">
+						<a href="index-2.html" class="organic-logo"><img
+							src="images/icons/logo.png" alt="organic logo" width="50"
+							height="50"></a>
+					</div>
+					<div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
+						<div class="primary-menu">
+							<ul class="menu organic-menu clone-main-menu clone-primary-menu"
+								id="primary-menu" data-menuname="main menu">
+
+								<li class="menu-item"><a href="/">Ana Sayfa</a></li>
+								<li class="menu-item"><a href="/ContactUS">İletişim</a></li>
+								<li class="menu-item"><a onclick="sendUsernameToBackend()"
+									href="/getinfo">Bilgi</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+						<div class="primary-menu">
+							<ul class="menu organic-menu clone-main-menu clone-primary-menu"
+								id="primary-menu" data-menuname="main menu">
+								<li
+									th:unless="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}"><a
+									href="login" class="login-link"><img
+										src="images/icons/login.png" height="30" width="30"></img>Giriş/Kayıt</a></li>
+								<li
+									th:if="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}">
+									<a href="" class="login-link" th:utext="'<img src=\'images/icons/login.png\' height=\'30\' width=\'30\'></img> ' + Hesabım"></a>
+									
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-lg-2 col-md-3 col-md-6 col-xs-6">
+						<div class="organic-cart-info">
+							<div class="minicart-block">
+								<div class="minicart-contain">
+									<a href="javascript:void(0)" class="link-to"> <span
+										class="icon-qty-combine"> <img
+											src="images/icons/cart.png" height="30" width="30">
+									</span> <span class="title">Sepetim</span> <span class="sub-total">$0.00</span>
+									</a>
+									<div class="cart-content">
+										<div class="cart-inner">
+											<div id="user-product-list-div"
+												th:attr="user-product-list=${userProductListJSON}"></div>
+											<ul class="products" id="product-list-ul">
+												<li th:each="userProduct : ${userProductList}"
+													th:id="userProduct.product.id">
+													<div class="minicart-item" id="minicart-item">
+														<div class="thumb">
+															<a href="#"><img
+																th:src="@{/images/products/__${userProduct.product.imgPath}__}"
+																width="90" height="90" alt="National Fresh"></a>
+														</div>
+														<div class="left-info">
+															<div class="product-title">
+																<a class="product-name"
+																	th:text=${userProduct.product.name}></a>
+															</div>
+															<div class="price">
+																<ins>
+																	<span class="price-amount"
+																		th:text="${userProduct.product.price}"><span
+																		class="currencySymbol">£</span>85.00</span>
+																</ins>
+																<del>
+																	<span class="price-amount"
+																		th:text="${userProduct.product.price}"><span
+																		class="currencySymbol">£</span>95.00</span>
+																</del>
+															</div>
+															<div class="qty">
+																<label>Adet: </label> <input type="number"
+																	class="input-qty" th:value="${userProduct.quantity}"
+																	disabled>
+															</div>
+														</div>
+														<div class="action">
+															<a class="edit"><i class="fa fa-pencil"
+																aria-hidden="true"></i></a> <a class="remove"><i
+																class="fa fa-trash-o" aria-hidden="true"></i></a>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<p class="btn-control">
+												<a href="#" class="btn view-cart">view cart</a> <a href="#"
+													class="btn">checkout</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="mobile-menu-toggle">
+								<a class="btn-toggle" data-object="open-mobile-menu"
+									href="javascript:void(0)"> <span></span> <span></span> <span></span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</header>
+</body>
+
+</html>

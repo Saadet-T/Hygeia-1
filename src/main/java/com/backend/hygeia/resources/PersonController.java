@@ -108,7 +108,7 @@ public class PersonController {
 		user.setUsername(username);
 		user.setEmail(email);
 		user.setNumber(number);
-		user.setPassword(password);
+		user.setPassword(encoder.encode(password));
 		user.setPostCode(postCode);
 		userRepository.save(optUser.get());
 

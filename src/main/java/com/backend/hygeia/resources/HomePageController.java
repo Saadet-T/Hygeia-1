@@ -48,6 +48,15 @@ public class HomePageController {
 	@GetMapping("/")
 	String getProducts(Model model) {
 		Gson gson = new Gson();
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication != null && authentication.isAuthenticated() && !authentication.getPrincipal().equals("anonymousUser")) {
+			Long userId = ((UserDetailsImpl) authentication.getPrincipal()).getId();
+			Optional<User> optUser = userRepository.findById(userId);
+			optUser.get().setPassword("");
+			 model.addAttribute("user", optUser.get());
+		}
+
         Map<Product,String> productList = productService.getAllProductsWithJson();
         List<Category> categoryList = categoryService.getAllCategories();
         List<Notice> noticeList = noticeService.getAllNotices();

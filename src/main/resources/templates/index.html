@@ -2,630 +2,672 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>organic - Organic Food</title>
-    <link href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/nice-select.css" th:href="@{/css/nice-select.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/slick.min.css" th:href="@{/css/slick.min.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/main-color.css" th:href="@{/css/main-color.css}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>organic - Organic Food</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:600&amp;display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap"
+	rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon"
+	href="../static/images/favicon.png" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/font-awesome.min.css"
+	th:href="@{/css/font-awesome.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/nice-select.css" th:href="@{/css/nice-select.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/slick.min.css" th:href="@{/css/slick.min.css}">
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{/css/style.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/main-color.css" th:href="@{/css/main-color.css}">
 
 </head>
 <body class="organic-body">
-    <!-- Preloader -->
-    <div id="biof-loading">
-        <div class="biof-loading-center">
-            <div class="biof-loading-center-absolute">
-                <div class="dot dot-one"></div>
-                <div class="dot dot-two"></div>
-                <div class="dot dot-three"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- HEADER -->
-    <header id="header" class="header-area style-01 layout-03">
-        <div class="header-middle organic-sticky-object ">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-2 col-md-1 col-md-6 col-xs-6">
-                        <a href="index-2.html" class="organic-logo"><img src="images/icons/logo.png" alt="organic logo" width="50" height="50"></a>
-                    </div>
-                    <div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
-                        <div class="primary-menu">
-                        <ul class="menu organic-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
-                            
-                            <li class="menu-item"><a href="/">Ana Sayfa</a></li>
-                            <li class="menu-item"><a href="/ContactUS">İletişim</a></li>
-                          <li class="menu-item"><a onclick="sendUsernameToBackend()" href="/getinfo">Bilgi</a>
- </li>                         
-
-                        </ul>
-                    </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
-                        <div class="primary-menu">
-                            <ul class="menu organic-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
-                                <li><a href="login" class="login-link"><img src="images/icons/login.png" height="30" width="30"></img>Giriş/Kayıt</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-  
-                    
-                    <div class="col-lg-2 col-md-3 col-md-6 col-xs-6">
-                        <div class="organic-cart-info">
-                            <div class="minicart-block">
-                                <div class="minicart-contain">
-                                    <a href="javascript:void(0)" class="link-to">
-                                            <span class="icon-qty-combine">
-                                                <img src="images/icons/cart.png" height="30" width="30">
-                                            </span>
-                                        <span class="title">Sepetim</span>
-                                        <span class="sub-total">$0.00</span>
-                                    </a>
-                                    <div class="cart-content">
-                                        <div class="cart-inner">
-                                        <div id="user-product-list-div" th:attr="user-product-list=${userProductListJSON}"></div>
-                                            <ul class="products" id="product-list-ul">
-                                                <li th:each="userProduct : ${userProductList}" th:id="userProduct.product.id">
-                                                    <div class="minicart-item" id="minicart-item">
-                                                        <div class="thumb">
-                                                            <a href="#"><img th:src="@{/images/products/__${userProduct.product.imgPath}__}" width="90" height="90" alt="National Fresh"></a>
-                                                        </div>
-                                                        <div class="left-info">
-                                                            <div class="product-title"><a  class="product-name" th:text=${userProduct.product.name}></a></div>
-                                                            <div class="price">
-                                                                <ins><span class="price-amount" th:text="${userProduct.product.price}"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                <del><span class="price-amount" th:text="${userProduct.product.price}"><span class="currencySymbol">£</span>95.00</span></del>
-                                                            </div>
-                                                            <div class="qty">
-                                                                <label >Adet: </label>
-                                                                <input type="number" class="input-qty" th:value="${userProduct.quantity}" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action">
-                                                            <a class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                            <a class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <p class="btn-control">
-                                                <a href="#" class="btn view-cart">view cart</a>
-                                                <a href="#" class="btn">checkout</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="mobile-menu-toggle">
-                                <a class="btn-toggle" data-object="open-mobile-menu" href="javascript:void(0)">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        
-    </header>
-
-    <!-- Page Contain -->
-    <div class="page-contain">
-
-        <!-- Main content -->
-        <div id="main-content" class="main-content">
-
-            <!--Block 01: Main slide-->
-            <div class="main-slide block-slider">
-                <ul class="organic-carousel nav-none-on-mobile" data-slick='{"arrows": true, "dots": false, "slidesMargin": 0, "slidesToShow": 1, "infinite": true, "speed": 800}' >
-                    <li th:each="notice : ${noticeList}">
-                        <div class="slide-contain slider-opt03__layout01">
-                            <div class="media">
-                                <div class="child-elememt">
-                                	<img th:src="${notice.imgPath}" width="604" height="580" alt="">
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <i th:text="${notice.firstLine}" class="first-line"></i>
-                                <h3 th:text="${notice.secondLine}" class="second-line"></h3>
-                                <p th:text="${notice.thirdLine}" class="third-line"></p>
-                            </div>
-                        </div>
-                    </li>
-                    
-                </ul>
-            </div>
-
-
-            
-            <!--Block 03: Product Tab-->
-            <div class="product-tab z-index-20 sm-margin-top-193px xs-margin-top-30px">
-                <div class="container">
-                    <div class="organic-title-box">
-                        <span class="subtitle">En Taze</span>
-                        <h3 class="main-title">Ürünler</h3>
-                    </div>
-                    <div class="organic-tab organic-tab-contain sm-margin-top-34px">
-					<!--Filtreleme butonları -->
-                        <div class="tab-head tab-head__icon-top-layout icon-top-layout">
-                            <ul class="tabs md-margin-bottom-35-im xs-margin-bottom-40-im">
-                            	<li class="tab-element active">
-                                    <a href="#tumUrunler" class="tab-link"><span class="biolife-icon"></span>Tüm Ürünler</a>
-                                </li>
-                                <li class="tab-element" th:each="category : ${categoryList}">
-                                    <a th:href="'#' + ${category.name}" class="tab-link" th:text="${category.description}"><span class="biolife-icon"></span></a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-						<!--ürünleri ekrana yazdıran kısım -->
-                        <div class="tab-content">
-                            <div id="tumUrunler" class="tab-contain active">
-                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-                                    <li th:each="product : ${productList}" class="product-item anaUrun">
-                                        <div class="contain-product layout-default">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img th:src="@{/images/products/__${product.key.imgPath}__}" th:alt="${product.key.category.name}" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                                <a class="lookup btn_call_quickview" href="#"><i class="organic-icon icon-search"></i></a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories" th:text="${product.key.category.description}"></b>
-                                                <h4 class="product-title"><a class="pr-name" th:text="${product.key.name}"></a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol" th:text="${product.key.price}">₺</span></span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol" th:text="${product.key.price}">₺</span></span></del>
-                                                </div>
-                                                <div class="slide-down-box">
-                                                    <p class="message" th:text="${product.key.description}"></p>
-                                                    <div class="buttons">
-                                                        <a th:onclick="addToCart(this)" th:attr="data-product=${product.value}" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div th:id="${category.name}" class="tab-contain " th:each="category : ${categoryList}">
-                                <ul class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
-                                    <li th:each="product : ${productList}" th:if="${product.key.category.name == category.name}" class="product-item anaUrun" th:classappend="${product.key.category.name}">
-                                        <div class="contain-product layout-default">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img th:src="@{/images/products/__${product.key.imgPath}__}" th:alt="${product.key.category.name}" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                                <a class="lookup btn_call_quickview" href="#"><i class="organic-icon icon-search"></i></a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories" th:text="${product.key.category.description}"></b>
-                                                <h4 class="product-title"><a class="pr-name" th:text="${product.key.name}"></a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol" th:text="${product.key.price}">₺</span></span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol" th:text="${product.key.price}">₺</span></span></del>
-                                                </div>
-                                                <div class="slide-down-box">
-                                                    <p class="message" th:text="${product.key.description}"></p>
-                                                    <div class="buttons">
-                                                        <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-
-            <!--Block 06: Products-->
-            <div class="Product-box sm-margin-top-96px xs-margin-top-0">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-5 col-sm-6">
-                            <div class="advance-product-box">
-                                <div class="organic-title-box bold-style organic-title-box__bold-style">
-                                    <h3 class="title">Deals of the day</h3>
-                                </div>
-                                <ul class="products organic-carousel nav-top-right nav-none-on-mobile" data-slick='{"arrows":true, "dots":false, "infinite":false, "speed":400, "slidesMargin":30, "slidesToShow":1}'>
-                                    <li class="product-item">
-                                        <div class="contain-product deal-layout contain-product__deal-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/home-03/product_deal_330x330.jpg" alt="dd" width="330" height="330" class="product-thumnail">
-                                                </a>
-                                                <div class="labels">
-                                                    <span class="sale-label">-50%</span>
-                                                </div>
-                                            </div>
-                                            <div class="info">
-                                                <div class="organic-countdown" data-datetime="2020/02/18 00:00:00"></div>
-                                                <b class="categories">Fresh Fruit</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="slide-down-box">
-                                                    <p class="message">All products are carefully selected to ensure food safety.</p>
-                                                    <div class="buttons">
-                                                        <a href="#" class="btn wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                        <a href="#" class="btn add-to-cart-btn">add to cart</a>
-                                                        <a href="#" class="btn compare-btn"><i class="fa fa-random" aria-hidden="true"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product deal-layout contain-product__deal-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/home-03/product_deal-02_330x330.jpg" alt="dd" width="330" height="330" class="product-thumnail">
-                                                </a>
-                                                <div class="labels">
-                                                    <span class="sale-label">-50%</span>
-                                                </div>
-                                            </div>
-                                            <div class="info">
-                                                <div class="organic-countdown" data-datetime="2020/04/18 00:00:00"></div>
-                                                <b class="categories">Fresh Fruit</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="slide-down-box">
-                                                    <p class="message">All products are carefully selected to ensure food safety.</p>
-                                                    <div class="buttons">
-                                                        <a href="#" class="btn wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                        <a href="#" class="btn add-to-cart-btn">add to cart</a>
-                                                        <a href="#" class="btn compare-btn"><i class="fa fa-random" aria-hidden="true"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product deal-layout contain-product__deal-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/home-03/product_deal-03_330x330.jpg" alt="dd" width="330" height="330" class="product-thumnail">
-                                                </a>
-                                                <div class="labels">
-                                                    <span class="sale-label">-50%</span>
-                                                </div>
-                                            </div>
-                                            <div class="info">
-                                                <div class="organic-countdown" data-datetime="2020/01/18 00:00:00"></div>
-                                                <b class="categories">Fresh Fruit</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="slide-down-box">
-                                                    <p class="message">All products are carefully selected to ensure food safety.</p>
-                                                    <div class="buttons">
-                                                        <a href="#" class="btn wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                        <a href="#" class="btn add-to-cart-btn">add to cart</a>
-                                                        <a href="#" class="btn compare-btn"><i class="fa fa-random" aria-hidden="true"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-md-7 col-sm-6">
-                            <div class="advance-product-box">
-                                <div class="organic-title-box bold-style organic-title-box__bold-style">
-                                    <h3 class="title">Top Rated Products</h3>
-                                </div>
-                                <ul class="products organic-carousel eq-height-contain nav-center-03 nav-none-on-mobile row-space-29px" data-slick='{"rows":2,"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":30,"slidesToShow":2,"responsive":[{"breakpoint":1200,"settings":{ "rows":2, "slidesToShow": 2}},{"breakpoint":992, "settings":{ "rows":2, "slidesToShow": 1}},{"breakpoint":768, "settings":{ "rows":2, "slidesToShow": 2}},{"breakpoint":500, "settings":{ "rows":2, "slidesToShow": 1}}]}'>
-                                    <li class="product-item">
-                                        <div class="contain-product right-info-layout contain-product__right-info-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/products/p-19.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories">Vegetables</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">Pumpkins Fairytale</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="rating">
-                                                    <p class="star-rating"><span class="width-80percent"></span></p>
-                                                    <span class="review-count">(05 Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product right-info-layout contain-product__right-info-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/products/p-03.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories">Vegetables</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">Passover Cauliflower</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="rating">
-                                                    <p class="star-rating"><span class="width-80percent"></span></p>
-                                                    <span class="review-count">(05 Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product right-info-layout contain-product__right-info-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/products/p-02.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories">Vegetables</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">Hot Chili Peppers</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="rating">
-                                                    <p class="star-rating"><span class="width-80percent"></span></p>
-                                                    <span class="review-count">(05 Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product right-info-layout contain-product__right-info-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/products/p-22.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories">Vegetables</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">Cherry Tomato Seeds</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="rating">
-                                                    <p class="star-rating"><span class="width-80percent"></span></p>
-                                                    <span class="review-count">(05 Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product right-info-layout contain-product__right-info-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/products/p-20.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories">Vegetables</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="rating">
-                                                    <p class="star-rating"><span class="width-80percent"></span></p>
-                                                    <span class="review-count">(05 Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product right-info-layout contain-product__right-info-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/products/p-05.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories">Vegetables</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">Organic Hass Avocado</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="rating">
-                                                    <p class="star-rating"><span class="width-80percent"></span></p>
-                                                    <span class="review-count">(05 Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product right-info-layout contain-product__right-info-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/products/p-06.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories">Vegetables</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">Packham's Pears</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="rating">
-                                                    <p class="star-rating"><span class="width-80percent"></span></p>
-                                                    <span class="review-count">(05 Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product-item">
-                                        <div class="contain-product right-info-layout contain-product__right-info-layout">
-                                            <div class="product-thumb">
-                                                <a href="#" class="link-to-product">
-                                                    <img src="../static/images/products/p-20.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <b class="categories">Vegetables</b>
-                                                <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
-                                                <div class="price ">
-                                                    <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                    <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                </div>
-                                                <div class="rating">
-                                                    <p class="star-rating"><span class="width-80percent"></span></p>
-                                                    <span class="review-count">(05 Reviews)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="organic-banner style-01 organic-banner__style-01 xs-margin-top-80px-im sm-margin-top-30px-im">
-                                    <div class="banner-contain">
-                                        <a href="#" class="bn-link"></a>
-                                        <div class="text-content">
-                                            <span class="first-line">Daily Fresh</span>
-                                            <b class="second-line">Natural</b>
-                                            <i class="third-line">Fresh Food</i>
-                                            <span class="fourth-line">Premium Quality</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+	<!-- Preloader -->
+	<div id="biof-loading">
+		<div class="biof-loading-center">
+			<div class="biof-loading-center-absolute">
+				<div class="dot dot-one"></div>
+				<div class="dot dot-two"></div>
+				<div class="dot dot-three"></div>
+			</div>
 		</div>
 	</div>
-			
-     
-    <!-- FOOTER -->
-    <footer id="footer" class="footer layout-03">
-        <div class="footer-content background-footer-03">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 md-margin-top-5px sm-margin-top-50px xs-margin-top-40px">
-                        <section class="footer-item">
-                            <div class="contact-info-block footer-layout xs-padding-top-10px">
-                                <ul class="contact-lines">
-                                    <li>
-                                        <p class="info-item">
-                                            
-                                            <img class="organic-icon" src="images/icons/phone.png" ></img> <b class="desc vertical-center"> Telefon: (+067) 234 789  (+068) 222 888</b>
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 md-margin-top-5px sm-margin-top-50px xs-margin-top-40px">
-                        <section class="footer-item">
-                            <div class="contact-info-block footer-layout xs-padding-top-10px">
-                                <ul class="contact-lines">
-                                    <li>
-                                        <p class="info-item">
-                                            
-                                           <img class="organic-icon" src="images/icons/postbox.png" ></img><b class="desc vertical-center"> Email:  contact@company.com</b>
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 md-margin-top-5px sm-margin-top-50px xs-margin-top-40px">
-                        <section class="footer-item">
-                            <div class="contact-info-block footer-layout xs-padding-top-10px">
-                                <ul class="contact-lines">
-                                    <li>
-                                        <p class="info-item">
-                                            <img class="organic-icon" src="images/icons/clock.png" ></img><b class="desc vertical-center">Teslimat Vakitleri Hafta içi 09:00-17:00</b>
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="separator sm-margin-top-70px xs-margin-top-40px"></div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </footer>
+	<!-- HEADER -->
+	<div th:replace="fragments/header :: header"></div>
 
-    <!--Footer For Mobile-->
-    <div class="mobile-footer">
-        <div class="mobile-footer-inner">
-            <div class="mobile-block block-menu-main">
-                <a class="menu-bar menu-toggle btn-toggle" data-object="open-mobile-menu" href="javascript:void(0)">
-                    <span class="fa fa-bars"></span>
-                    <span class="text">Menü</span>
-                </a>
-            </div>
-            <div class="mobile-block block-minicart">
-                <a class="link-to-cart" href="#">
-                    <span class="fa fa-shopping-bag" aria-hidden="true"></span>
-                    <span class="text">Sepet</span>
-                </a>
-            </div>
-        </div>
-    </div>
-   
-    <!-- Scroll Top Button -->
-    <a class="btn-scroll-top"><img src="images/icons/return.png" height="75" width="75"></img></a>
+	<!-- Page Contain -->
+	<div class="page-contain">
 
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
-    <script src="js/jquery.countdown.min.js" ></script>
-    <script src="js/jquery.nice-select.min.js" ></script>
-    <script src="js/jquery.nicescroll.min.js" ></script>
-    <script src="js/slick.min.js" ></script>
-    <script src="js/organic.framework.js" ></script>
-    <script src="js/functions.js" ></script>
-    <script src="js/cart.js" ></script>
-    <script src="js/info.js" ></script>
+		<!-- Main content -->
+		<div id="main-content" class="main-content">
 
-    
+			<!--Block 01: Main slide-->
+			<div class="main-slide block-slider">
+				<ul class="organic-carousel nav-none-on-mobile"
+					data-slick='{"arrows": true, "dots": false, "slidesMargin": 0, "slidesToShow": 1, "infinite": true, "speed": 800}'>
+					<li th:each="notice : ${noticeList}">
+						<div class="slide-contain slider-opt03__layout01">
+							<div class="media">
+								<div class="child-elememt">
+									<img th:src="${notice.imgPath}" width="604" height="580" alt="">
+								</div>
+							</div>
+							<div class="text-content">
+								<i th:text="${notice.firstLine}" class="first-line"></i>
+								<h3 th:text="${notice.secondLine}" class="second-line"></h3>
+								<p th:text="${notice.thirdLine}" class="third-line"></p>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+
+
+
+			<!--Block 03: Product Tab-->
+			<div
+				class="product-tab z-index-20 sm-margin-top-193px xs-margin-top-30px">
+				<div class="container">
+					<div class="organic-title-box">
+						<span class="subtitle">En Taze</span>
+						<h3 class="main-title">Ürünler</h3>
+					</div>
+					<div class="organic-tab organic-tab-contain sm-margin-top-34px">
+						<!--Filtreleme butonları -->
+						<div class="tab-head tab-head__icon-top-layout icon-top-layout">
+							<ul class="tabs md-margin-bottom-35-im xs-margin-bottom-40-im">
+								<li class="tab-element active"><a href="#tumUrunler"
+									class="tab-link"><span class="biolife-icon"></span>Tüm
+										Ürünler</a></li>
+								<li class="tab-element" th:each="category : ${categoryList}">
+									<a th:href="'#' + ${category.name}" class="tab-link"
+									th:text="${category.description}"><span
+										class="biolife-icon"></span></a>
+								</li>
+
+							</ul>
+						</div>
+						<!--ürünleri ekrana yazdıran kısım -->
+						<div class="tab-content">
+							<div id="tumUrunler" class="tab-contain active">
+								<ul
+									class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain"
+									data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
+									<li th:each="product : ${productList}"
+										class="product-item anaUrun">
+										<div class="contain-product layout-default">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													th:src="@{/images/products/__${product.key.imgPath}__}"
+													th:alt="${product.key.category.name}" width="270"
+													height="270" class="product-thumnail">
+												</a> <a class="lookup btn_call_quickview" href="#"><i
+													class="organic-icon icon-search"></i></a>
+											</div>
+											<div class="info">
+												<b class="categories"
+													th:text="${product.key.category.description}"></b>
+												<h4 class="product-title">
+													<a class="pr-name" th:text="${product.key.name}"></a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol" th:text="${product.key.price}">₺</span></span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol" th:text="${product.key.price}">₺</span></span>
+													</del>
+												</div>
+												<div class="slide-down-box">
+													<p class="message" th:text="${product.key.description}"></p>
+													<div class="buttons">
+														<a th:onclick="addToCart(this)"
+															th:attr="data-product=${product.value}"
+															class="btn add-to-cart-btn"><i
+															class="fa fa-cart-arrow-down" aria-hidden="true"></i>add
+															to cart</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div th:id="${category.name}" class="tab-contain "
+								th:each="category : ${categoryList}">
+								<ul
+									class="products-list organic-carousel nav-center-02 nav-none-on-mobile eq-height-contain"
+									data-slick='{"rows":2 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
+									<li th:each="product : ${productList}"
+										th:if="${product.key.category.name == category.name}"
+										class="product-item anaUrun"
+										th:classappend="${product.key.category.name}">
+										<div class="contain-product layout-default">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													th:src="@{/images/products/__${product.key.imgPath}__}"
+													th:alt="${product.key.category.name}" width="270"
+													height="270" class="product-thumnail">
+												</a> <a class="lookup btn_call_quickview" href="#"><i
+													class="organic-icon icon-search"></i></a>
+											</div>
+											<div class="info">
+												<b class="categories"
+													th:text="${product.key.category.description}"></b>
+												<h4 class="product-title">
+													<a class="pr-name" th:text="${product.key.name}"></a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol" th:text="${product.key.price}">₺</span></span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol" th:text="${product.key.price}">₺</span></span>
+													</del>
+												</div>
+												<div class="slide-down-box">
+													<p class="message" th:text="${product.key.description}"></p>
+													<div class="buttons">
+														<a href="#" class="btn add-to-cart-btn"><i
+															class="fa fa-cart-arrow-down" aria-hidden="true"></i>add
+															to cart</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!--Block 06: Products-->
+			<div class="Product-box sm-margin-top-96px xs-margin-top-0">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 col-md-5 col-sm-6">
+							<div class="advance-product-box">
+								<div
+									class="organic-title-box bold-style organic-title-box__bold-style">
+									<h3 class="title">Deals of the day</h3>
+								</div>
+								<ul
+									class="products organic-carousel nav-top-right nav-none-on-mobile"
+									data-slick='{"arrows":true, "dots":false, "infinite":false, "speed":400, "slidesMargin":30, "slidesToShow":1}'>
+									<li class="product-item">
+										<div
+											class="contain-product deal-layout contain-product__deal-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/home-03/product_deal_330x330.jpg"
+													alt="dd" width="330" height="330" class="product-thumnail">
+												</a>
+												<div class="labels">
+													<span class="sale-label">-50%</span>
+												</div>
+											</div>
+											<div class="info">
+												<div class="organic-countdown"
+													data-datetime="2020/02/18 00:00:00"></div>
+												<b class="categories">Fresh Fruit</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">National Fresh Fruit</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="slide-down-box">
+													<p class="message">All products are carefully selected
+														to ensure food safety.</p>
+													<div class="buttons">
+														<a href="#" class="btn wishlist-btn"><i
+															class="fa fa-heart" aria-hidden="true"></i></a> <a href="#"
+															class="btn add-to-cart-btn">add to cart</a> <a href="#"
+															class="btn compare-btn"><i class="fa fa-random"
+															aria-hidden="true"></i></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product deal-layout contain-product__deal-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/home-03/product_deal-02_330x330.jpg"
+													alt="dd" width="330" height="330" class="product-thumnail">
+												</a>
+												<div class="labels">
+													<span class="sale-label">-50%</span>
+												</div>
+											</div>
+											<div class="info">
+												<div class="organic-countdown"
+													data-datetime="2020/04/18 00:00:00"></div>
+												<b class="categories">Fresh Fruit</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">National Fresh Fruit</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="slide-down-box">
+													<p class="message">All products are carefully selected
+														to ensure food safety.</p>
+													<div class="buttons">
+														<a href="#" class="btn wishlist-btn"><i
+															class="fa fa-heart" aria-hidden="true"></i></a> <a href="#"
+															class="btn add-to-cart-btn">add to cart</a> <a href="#"
+															class="btn compare-btn"><i class="fa fa-random"
+															aria-hidden="true"></i></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product deal-layout contain-product__deal-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/home-03/product_deal-03_330x330.jpg"
+													alt="dd" width="330" height="330" class="product-thumnail">
+												</a>
+												<div class="labels">
+													<span class="sale-label">-50%</span>
+												</div>
+											</div>
+											<div class="info">
+												<div class="organic-countdown"
+													data-datetime="2020/01/18 00:00:00"></div>
+												<b class="categories">Fresh Fruit</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">National Fresh Fruit</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="slide-down-box">
+													<p class="message">All products are carefully selected
+														to ensure food safety.</p>
+													<div class="buttons">
+														<a href="#" class="btn wishlist-btn"><i
+															class="fa fa-heart" aria-hidden="true"></i></a> <a href="#"
+															class="btn add-to-cart-btn">add to cart</a> <a href="#"
+															class="btn compare-btn"><i class="fa fa-random"
+															aria-hidden="true"></i></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-8 col-md-7 col-sm-6">
+							<div class="advance-product-box">
+								<div
+									class="organic-title-box bold-style organic-title-box__bold-style">
+									<h3 class="title">Top Rated Products</h3>
+								</div>
+								<ul
+									class="products organic-carousel eq-height-contain nav-center-03 nav-none-on-mobile row-space-29px"
+									data-slick='{"rows":2,"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":30,"slidesToShow":2,"responsive":[{"breakpoint":1200,"settings":{ "rows":2, "slidesToShow": 2}},{"breakpoint":992, "settings":{ "rows":2, "slidesToShow": 1}},{"breakpoint":768, "settings":{ "rows":2, "slidesToShow": 2}},{"breakpoint":500, "settings":{ "rows":2, "slidesToShow": 1}}]}'>
+									<li class="product-item">
+										<div
+											class="contain-product right-info-layout contain-product__right-info-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/products/p-19.jpg" alt="dd"
+													width="270" height="270" class="product-thumnail">
+												</a>
+											</div>
+											<div class="info">
+												<b class="categories">Vegetables</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">Pumpkins Fairytale</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="rating">
+													<p class="star-rating">
+														<span class="width-80percent"></span>
+													</p>
+													<span class="review-count">(05 Reviews)</span>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product right-info-layout contain-product__right-info-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/products/p-03.jpg" alt="dd"
+													width="270" height="270" class="product-thumnail">
+												</a>
+											</div>
+											<div class="info">
+												<b class="categories">Vegetables</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">Passover Cauliflower</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="rating">
+													<p class="star-rating">
+														<span class="width-80percent"></span>
+													</p>
+													<span class="review-count">(05 Reviews)</span>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product right-info-layout contain-product__right-info-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/products/p-02.jpg" alt="dd"
+													width="270" height="270" class="product-thumnail">
+												</a>
+											</div>
+											<div class="info">
+												<b class="categories">Vegetables</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">Hot Chili Peppers</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="rating">
+													<p class="star-rating">
+														<span class="width-80percent"></span>
+													</p>
+													<span class="review-count">(05 Reviews)</span>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product right-info-layout contain-product__right-info-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/products/p-22.jpg" alt="dd"
+													width="270" height="270" class="product-thumnail">
+												</a>
+											</div>
+											<div class="info">
+												<b class="categories">Vegetables</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">Cherry Tomato Seeds</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="rating">
+													<p class="star-rating">
+														<span class="width-80percent"></span>
+													</p>
+													<span class="review-count">(05 Reviews)</span>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product right-info-layout contain-product__right-info-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/products/p-20.jpg" alt="dd"
+													width="270" height="270" class="product-thumnail">
+												</a>
+											</div>
+											<div class="info">
+												<b class="categories">Vegetables</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">National Fresh Fruit</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="rating">
+													<p class="star-rating">
+														<span class="width-80percent"></span>
+													</p>
+													<span class="review-count">(05 Reviews)</span>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product right-info-layout contain-product__right-info-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/products/p-05.jpg" alt="dd"
+													width="270" height="270" class="product-thumnail">
+												</a>
+											</div>
+											<div class="info">
+												<b class="categories">Vegetables</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">Organic Hass Avocado</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="rating">
+													<p class="star-rating">
+														<span class="width-80percent"></span>
+													</p>
+													<span class="review-count">(05 Reviews)</span>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product right-info-layout contain-product__right-info-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/products/p-06.jpg" alt="dd"
+													width="270" height="270" class="product-thumnail">
+												</a>
+											</div>
+											<div class="info">
+												<b class="categories">Vegetables</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">Packham's Pears</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="rating">
+													<p class="star-rating">
+														<span class="width-80percent"></span>
+													</p>
+													<span class="review-count">(05 Reviews)</span>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li class="product-item">
+										<div
+											class="contain-product right-info-layout contain-product__right-info-layout">
+											<div class="product-thumb">
+												<a href="#" class="link-to-product"> <img
+													src="../static/images/products/p-20.jpg" alt="dd"
+													width="270" height="270" class="product-thumnail">
+												</a>
+											</div>
+											<div class="info">
+												<b class="categories">Vegetables</b>
+												<h4 class="product-title">
+													<a href="#" class="pr-name">National Fresh Fruit</a>
+												</h4>
+												<div class="price ">
+													<ins>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>85.00</span>
+													</ins>
+													<del>
+														<span class="price-amount"><span
+															class="currencySymbol">£</span>95.00</span>
+													</del>
+												</div>
+												<div class="rating">
+													<p class="star-rating">
+														<span class="width-80percent"></span>
+													</p>
+													<span class="review-count">(05 Reviews)</span>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<div
+									class="organic-banner style-01 organic-banner__style-01 xs-margin-top-80px-im sm-margin-top-30px-im">
+									<div class="banner-contain">
+										<a href="#" class="bn-link"></a>
+										<div class="text-content">
+											<span class="first-line">Daily Fresh</span> <b
+												class="second-line">Natural</b> <i class="third-line">Fresh
+												Food</i> <span class="fourth-line">Premium Quality</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- FOOTER -->
+	<div th:replace="fragments/footer :: footer"></div>
+	
+	<!-- Scroll Top Button -->
+	<a class="btn-scroll-top"><img src="images/icons/return.png"
+		height="75" width="75"></img></a>
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/organic.framework.js"></script>
+	<script src="js/functions.js"></script>
+	<script src="js/cart.js"></script>
+	<script src="js/info.js"></script>
+
+
 </body>
 
 </html>
