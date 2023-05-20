@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.backend.hygeia.entities.Category;
@@ -14,6 +16,9 @@ import com.backend.hygeia.entities.Notice;
 import com.backend.hygeia.entities.Product;
 import com.backend.hygeia.entities.User;
 import com.backend.hygeia.entities.UserProduct;
+import com.backend.hygeia.entities.address.City;
+import com.backend.hygeia.entities.address.District;
+import com.backend.hygeia.entities.address.Neighborhood;
 import com.backend.hygeia.repositories.ProductRepository;
 import com.backend.hygeia.repositories.UserRepository;
 import com.backend.hygeia.security.services.UserDetailsImpl;
@@ -21,11 +26,16 @@ import com.backend.hygeia.services.CategoryService;
 import com.backend.hygeia.services.NoticeService;
 import com.backend.hygeia.services.ProductService;
 import com.backend.hygeia.services.UserProductService;
+import com.backend.hygeia.services.address.CityService;
+import com.backend.hygeia.services.address.DistrictService;
+import com.backend.hygeia.services.address.NeighborhoodService;
 import com.backend.hygeia.utils.UserProductMapper;
 import com.google.gson.Gson;
 
 import java.io.Console;
 import java.util.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomePageController {
@@ -41,6 +51,15 @@ public class HomePageController {
 	
 	@Autowired
 	UserProductService userProductService;
+	
+	@Autowired
+	CityService cityService;
+	
+	@Autowired
+	DistrictService districtService;
+	
+	@Autowired
+	NeighborhoodService neighborhoodService;
 	
 	@Autowired
 	UserRepository userRepository;
@@ -60,7 +79,7 @@ public class HomePageController {
         Map<Product,String> productList = productService.getAllProductsWithJson();
         List<Category> categoryList = categoryService.getAllCategories();
         List<Notice> noticeList = noticeService.getAllNotices();
-        List<UserProduct> userProductList = userProductService.getAllUserProducts();
+        List<UserProduct> userProductList = userProductService.getCurrentUsersProducts();
         String userProductListJSON = gson.toJson(userProductList);
         model.addAttribute("productList", productList);
         model.addAttribute("categoryList", categoryList);
@@ -100,6 +119,35 @@ public class HomePageController {
 		Optional<User> optUser = userRepository.findById(userId);
 		 model.addAttribute("user", optUser.get());
 		return "updateUserInfo";
+	}
+	
+	@PostMapping("/checkout")
+	public String checkout(HttpServletRequest request,Model model) {
+		//alt kısımdaki userId kısmı frontendden geliyor bunun yerine backendde yapılması zafiyeti ortadan kaldırır
+		String userid= request.getParameter("user_id");
+		Long userId = Long.parseLong(userid);
+		
+		Gson gson = new Gson();
+        List<City> cityList = cityService.getAllCities();
+        List<District> districtList = districtService.getAllDistricts();
+        List<Neighborhood> neighborhoodList = neighborhoodService.getAllNeighborhood();
+        List<UserProduct> userProductList = userProductService.getCurrentUsersProducts(userId);
+        double totalPrice=0;
+        for (UserProduct userProduct : userProductList) {
+        	totalPrice = totalPrice + (userProduct.getProduct().getPrice()*userProduct.getQuantity());
+		}
+        model.addAttribute("userProductList", userProductList);
+        model.addAttribute("cityList", cityList);
+        model.addAttribute("districtListJson", gson.toJson(districtList));
+        model.addAttribute("neighborhoodListJson", gson.toJson(neighborhoodList));
+        model.addAttribute("totalPrice", totalPrice);
+        double shipmentPrice = 0;
+        if(totalPrice < 200)
+        {
+        	shipmentPrice=20;
+        }
+        model.addAttribute("shipmentPrice", shipmentPrice);
+		return "checkout";
 	}
 	
 

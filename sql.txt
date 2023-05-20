@@ -50,6 +50,59 @@ INSERT INTO public.products(
 	 description, img_path, name, price,status, category_id)
 	VALUES ( 'Misket Limonu', 'misketlimonu.jpg', 'Misket limonu',25.00,1,4);
 	
+INSERT INTO public.cities(name)VALUES ( 'İSTANBUL');
+	
+INSERT INTO public.districts(name, city_id) VALUES ( 'BEŞİKTAŞ', 1);
+INSERT INTO public.districts(name, city_id) VALUES ( 'ŞİŞLİ', 1);
+
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('VİŞNEZADE MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('SİNANPAŞA MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('MURADİYE MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('CİHANNÜMA MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('TÜRKALİ MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('ABBASAĞA MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('YILDIZ MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('DİKİLİTAŞ MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('GAYRETTEPE MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('BALMUMCU MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('MECİDİYE MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('ORTAKÖY MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('LEVAZIM MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('ULUS MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('KURUÇEŞME MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('KÜLTÜR MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('NİSBETİYE MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('ARNAVUTKÖY MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('BEBEK MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('ETİLER MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('AKAT MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('LEVENT MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('KONAKLAR MAHALLESİ', 1);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('19 MAYIS MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('BOZKURT MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('CUMHURİYET MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('DUATEPE MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('ERGENEKON MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('ESKİŞEHİR MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('FERİKÖY MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('FULYA MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('GÜLBAHAR MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('HALİDE EDİP ADIVAR MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('HALİL RIFAT PAŞA MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('HALASKARGAZİ MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('HARBİYE MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('KAPTANPAŞA MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('KUŞTEPE MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('MAHMUT ŞEVKET PAŞA MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('MECİDİYEKÖY MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('MERKEZ MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('MEŞRUTİYET MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('PAŞA MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('TEŞVİKİYE MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('YAYLA MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('İNÖNÜ MAHALLESİ', 2);
+INSERT INTO public.neighborhoods(name, district_id) VALUES ('İZZET PAŞA MAHALLESİ', 2);
+	
 Tropikal Meyveler: Ananas, mango, papaya, guava, kivi vb.
 Kırmızı Meyveler: Çilek, kiraz, karpuz, kırmızı üzüm, nar vb.
 Turunçgiller: Portakal, mandalina, greyfurt, limon, limetta vb.

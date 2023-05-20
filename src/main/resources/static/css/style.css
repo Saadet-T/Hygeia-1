@@ -151,11 +151,6 @@ input[type="tel"]::placeholder,
 input[type="search"]::placeholder{
     color: #888888;
 }
-select{
-    background: transparent;
-    border: none;
-    color: #ffffff;
-}
 select option{
     color: #333333;
 }

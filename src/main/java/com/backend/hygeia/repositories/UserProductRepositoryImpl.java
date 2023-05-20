@@ -30,6 +30,12 @@ public class UserProductRepositoryImpl implements UserProductRepository {
 		String sql = "SELECT * FROM user_products";
 		return jdbcTemplate.query(sql, userProductMapper);
 	}
+	@Override
+	public List<UserProduct> findAllByUserId(Long userId) {
+		String sql = "SELECT * FROM user_products WHERE user_id = ?";
+		Object[] args = { userId };
+		return jdbcTemplate.query(sql, args, userProductMapper);
+	}
 
 	@Override
 	public UserProduct findById(Long id) {
@@ -82,5 +88,7 @@ public class UserProductRepositoryImpl implements UserProductRepository {
 		jdbcTemplate.update(sql, args);
 		return userProduct;
 	}
+
+
 
 }

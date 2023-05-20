@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,13 +10,14 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/slick.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/main-color.css">
+  	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="/css/animate.min.css" >
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" >
+    <link rel="stylesheet" type="text/css" href="/css/nice-select.css" >
+    <link rel="stylesheet" type="text/css" href="/css/slick.min.css" >
+    <link rel="stylesheet" type="text/css" href="/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="/css/main-color.css" >
+    <link rel="stylesheet" type="text/css" href="/css/checkout.css" >
 </head>
 <body class="biolife-body">
 
@@ -35,129 +35,123 @@
 	<!-- HEADER -->
 	<div th:replace="fragments/header :: header"></div>
 
-    <!--Hero Section-->
-    <div class="hero-section hero-background">
-        <h1 class="page-title">Organic Fruits</h1>
-    </div>
-
-    <!--Navigation section-->
-    <div class="container">
-        <nav class="biolife-nav">
-            <ul>
-                <li class="nav-item"><a href="index-2.html" class="permal-link">Home</a></li>
-                <li class="nav-item"><span class="current-page">ShoppingCart</span></li>
-            </ul>
-        </nav>
-    </div>
-
     <div class="page-contain checkout">
 
         <!-- Main content -->
         <div id="main-content" class="main-content">
             <div class="container sm-margin-top-37px">
                 <div class="row">
-
+					<div id="lists" th:attr="district-list=${districtListJson},neighborhood-list=${neighborhoodListJson}" style="display: none"></div>
                     <!--checkout progress box-->
-                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                        <div class="checkout-progress-wrap">
-                            <ul class="steps">
-                                <li class="step 1st">
-                                    <div class="checkout-act active">
-                                        <h3 class="title-box"><span class="number">1</span>Customer</h3>
-                                        <div class="box-content">
-                                            <p class="txt-desc">Checking out as a <a class="pmlink" href="#">Guest?</a> You’ll be able to save your details to create an account with us later.</p>
-                                            <div class="login-on-checkout">
-                                                <form action="#" name="frm-login" method="post">
-                                                    <p class="form-row">
-                                                        <label for="input_email">Email Address</label>
-                                                        <input type="email" name="email" id="input_email" value="" placeholder="Your email">
-                                                        <button type="submit" name="btn-sbmt" class="btn">Continue As Guest</button>
-                                                    </p>
-                                                    <p class="form-row">
-                                                        <input type="checkbox" name="subcribe" id="input_subcribe" >
-                                                        <label for="input_subcribe">Subscribe to our newsletter</label>
-                                                    </p>
-                                                    <p class="msg">Already have an account? <a href="#" class="link-forward">Sign in now</a></p>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="step 2nd">
-                                    <div class="checkout-act"><h3 class="title-box"><span class="number">2</span>Shipping</h3></div>
-                                </li>
-                                <li class="step 3rd">
-                                    <div class="checkout-act"><h3 class="title-box"><span class="number">3</span>Billing</h3></div>
-                                </li>
-                                <li class="step 4th">
-                                    <div class="checkout-act"><h3 class="title-box"><span class="number">4</span>Payment</h3></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+					<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+					    <div class="checkout-progress-wrap">
+					        <ul class="steps">
+					            <li class="step 1nd" onclick="checkoutSteps('shipping')">
+					                <div class="checkout-act active" id="shipping"><h3 class="title-box"><span class="number">1</span>Teslimat Zamanı</h3></div>
+					                <div>
+					                    <input type="datetime-local" name="deliveryDateTime">
+					                </div>
+					            </li>
+					            <li class="step 2rd" onclick="checkoutSteps('billing')">
+					                <div class="checkout-act" id="billing"><h3 class="title-box"><span class="number">2</span>Teslimat Adresi</h3></div>
+					                <div class="checkCont">
+										<form action="/adres-ekle" method="post">
+								            <div class="form-group">
+								                <label for="il">İl:</label>
+								                <select id="il" name="il" th:onchange="populateIlceler(this.value)">
+								                    <option value="">Seçim Yapınız</option>
+								                    <option th:each="il : ${cityList}" th:value="${il.id}" th:text="${il.name}"></option>
+								                </select>
+								            </div>
+								
+								            <div class="form-group">
+								                <label for="ilce">İlçe:</label>
+								                <select id="ilce" name="ilce" th:onchange="populateMahalleler(this.value)">
+								                    <option value="">Seçim Yapınız</option>
+								                </select>
+								            </div>
+								
+								            <div class="form-group">
+								                <label for="mahalle">Mahalle:</label>
+								                <select id="mahalle" name="mahalle">
+								                    <option value="">Seçim Yapınız</option>
+								                </select>
+								            </div>
+								
+								            <div class="form-group">
+								                <label for="sokak">Sokak:</label>
+								                <input type="text" id="sokak" name="sokak">
+								            </div>
+								
+								            <div class="form-group">
+								                <label for="daire">Daire:</label>
+								                <input type="text" id="daire" name="daire">
+								            </div>
+								
+								            <div class="form-group">
+								                <label for="adres">Adres Tarifi:</label>
+								                <textarea id="adres" name="adres"></textarea>
+								            </div>
+								
+								            <button type="submit">Adres Ekle</button>
+								        </form>
+					                </div>
+					            </li>
+					            <li class="step 3th" onclick="checkoutSteps('payment')">
+					                <div class="checkout-act" id="payment"><h3 class="title-box"><span class="number">3</span>Ödeme Şekli</h3></div>
+					                <div class="paymentDiv">
+					                    <!-- Kapıda peşin ödeme ve kapıda kredi kartı ile ödeme olmak üzere iki seçenekli bir checkbox olması gereken alan -->
+					                    <label>
+					                        <input type="radio" name="paymentMethod" value="cashOnDelivery"> Kapıda Peşin Ödeme
+					                    </label>
+					                    <label>
+					                        <input type="radio" name="paymentMethod" value="creditCardOnDelivery"> Kapıda Kredi Kartı ile Ödeme
+					                    </label>
+					                </div>
+					            </li>
+					        </ul>
+					    </div>
+					</div>
 
                     <!--Order Summary-->
                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 sm-padding-top-48px sm-margin-bottom-0 xs-margin-bottom-15px">
                         <div class="order-summary sm-margin-bottom-80px">
                             <div class="title-block">
-                                <h3 class="title">Order Summary</h3>
-                                <a href="#" class="link-forward">Edit cart</a>
+                                <h3 class="title">Sipariş Özeti</h3>
                             </div>
                             <div class="cart-list-box short-type">
-                                <span class="number">2 items</span>
+                                <span class="number">Ürünler</span>
                                 <ul class="cart-list">
-                                    <li class="cart-elem">
+                                    <li class="cart-elem" th:each="userProduct : ${userProductList}">
                                         <div class="cart-item">
                                             <div class="product-thumb">
                                                 <a class="prd-thumb" href="#">
-                                                    <figure><img src="assets/images/shippingcart/pr-01.jpg" width="113" height="113" alt="shop-cart" ></figure>
+                                                    <figure><img th:src="@{/images/products/__${userProduct.product.imgPath}__}" width="113" height="113" alt="shop-cart" ></figure>
                                                 </a>
                                             </div>
                                             <div class="info">
-                                                <span class="txt-quantity">1X</span>
-                                                <a href="#" class="pr-name">National Fresh Fruit</a>
+                                                <span class="txt-quantity" th:text="${userProduct.quantity}"></span>
+                                                <a href="#" class="pr-name" th:text="${userProduct.product.name}"></a>
                                             </div>
                                             <div class="price price-contain">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
+                                                <ins><span class="price-amount" th:text="${userProduct.product.price}"><span class="currencySymbol">£</span></span></ins>
+                                                <del><span class="price-amount" th:text="${userProduct.product.price}"><span class="currencySymbol">£</span></span></del>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="cart-elem">
-                                        <div class="cart-item">
-                                            <div class="product-thumb">
-                                                <a class="prd-thumb" href="#">
-                                                    <figure><img src="assets/images/shippingcart/pr-02.jpg" width="113" height="113" alt="shop-cart" ></figure>
-                                                </a>
-                                            </div>
-                                            <div class="info">
-                                                <span class="txt-quantity">1X</span>
-                                                <a href="#" class="pr-name">National Fresh Fruit</a>
-                                            </div>
-                                            <div class="price price-contain">
-                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                                 <ul class="subtotal">
                                     <li>
                                         <div class="subtotal-line">
-                                            <b class="stt-name">Subtotal</b>
-                                            <span class="stt-price">£170.00</span>
+                                            <b class="stt-name">Toplam Ürün Fiyatı</b>
+                                            <span class="stt-price" th:text="${totalPrice}"><span class="currencySymbol">£</span></span>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="subtotal-line">
-                                            <b class="stt-name">Shipping</b>
-                                            <span class="stt-price">£20.00</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="subtotal-line">
-                                            <b class="stt-name">Tax</b>
-                                            <span class="stt-price">£0.00</span>
+                                            <b class="stt-name">Kargo Ücreti</b>
+                                            <span class="stt-price" th:text="${shipmentPrice}"><span class="currencySymbol">£</span></span>
                                         </div>
                                     </li>
                                     <li>
@@ -167,8 +161,8 @@
                                     </li>
                                     <li>
                                         <div class="subtotal-line">
-                                            <b class="stt-name">total:</b>
-                                            <span class="stt-price">£190.00</span>
+                                            <b class="stt-name">Toplam Ödenecek Tutar:</b>
+                                            <span class="stt-price" th:text="${shipmentPrice+totalPrice}"><span class="currencySymbol">£</span></span>
                                         </div>
                                     </li>
                                 </ul>
@@ -187,14 +181,15 @@
     <!-- Scroll Top Button -->
     <a class="btn-scroll-top"><i class="biolife-icon icon-left-arrow"></i></a>
 
-    <script src="assets/js/jquery-3.4.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.countdown.min.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.min.js"></script>
-    <script src="assets/js/slick.min.js"></script>
-    <script src="assets/js/biolife.framework.js"></script>
-    <script src="assets/js/functions.js"></script>
+    <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/jquery.countdown.min.js" th:src="@{/js/jquery.countdown.min.js}"></script>
+    <script src="../static/js/jquery.nice-select.min.js" th:src="@{/js/jquery.nice-select.min.js}"></script>
+    <script src="../static/js/jquery.nicescroll.min.js" th:src="@{/js/jquery.nicescroll.min.js}"></script>
+    <script src="../static/js/slick.min.js" th:src="@{/js/slick.min.js}"></script>
+    <script src="../static/js/organic.framework.js" th:src="@{/js/organic.framework.js}"></script>
+    <script src="../static/js/functions.js" th:src="@{/js/functions.js}"></script>
+    <script src="../static/js/checkout.js" th:src="@{/js/checkout.js}"></script>
 </body>
 
 </html>

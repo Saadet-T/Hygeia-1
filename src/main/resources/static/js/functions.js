@@ -9,7 +9,7 @@
         $menu_mobile                                = $('.clone-main-menu'),
         $sticky_object                              = $('.organic-sticky-object'),
         $shop_filter                                = $('#top-functions-area'),
-        $organic_select                             = $('select:not(.hidden)'),
+//        $organic_select                             = $('select:not(.hidden)'),
         $rating_form                                = $('.comment-form-rating'),
         $accodition                                 = $('.organic-accodition'),
         $block_tab                                  = $('.organic-tab-contain'),
@@ -33,10 +33,10 @@
         })
     }
 
-    /*Register Select Element*/
-    if( $organic_select.length ){
-        $organic_select.niceSelect()
-    }
+//    /*Register Select Element*/
+//    if( $organic_select.length ){
+//        $organic_select.niceSelect()
+//    }
 
     /*Minicart Scroll handle*/
     if( $scroll_items.length){
