@@ -132,15 +132,15 @@
             input_field.attr('disabled', 'disabled');
         }
     });
-
-    $document.on('click','.minicart-item .action .remove',function (e){
-        e.preventDefault();
-        let _this           = $(this),
-            minicart_item   = _this.closest('li'),
-            block_minicart  = _this.closest('.cart-inner');
-        minicart_item.remove();
-        $('body').trigger( 'update-minicart',[ block_minicart ]);
-    });
+//SEPETTEKİ ÜRÜNLERDE ÇÖP KUTUSUNA BASILDIĞINDA ÜRÜNÜ SİLEN FONKSİYON
+//    $document.on('click','.minicart-item .action .remove',function (e){
+//        e.preventDefault();
+//        let _this           = $(this),
+//            minicart_item   = _this.closest('li'),
+//            block_minicart  = _this.closest('.cart-inner');
+//        minicart_item.remove();
+//        $('body').trigger( 'update-minicart',[ block_minicart ]);
+//    });
 
     $document.on('click','#overlay',function (e){
         e.preventDefault();

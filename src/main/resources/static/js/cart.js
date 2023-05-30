@@ -11,33 +11,37 @@ function addToCart(data) {
 	if (productIndex === -1) {
 		// bu id'ye sahip bir ürün yok, yeni bir ürün ekle
 		userProductList.push({ status: 1, quantity: 1, product: product });
-		sendData(userProductList[userProductList.length - 1],'/cart/addToCart');
-		console.log("Sended product: "+JSON.stringify(userProductList[userProductList.length - 1]));
+		sendData(userProductList[userProductList.length - 1], '/cart/addToCart');
+		console.log("Sended product: " + JSON.stringify(userProductList[userProductList.length - 1]));
 	} else {
 		// bu id'ye sahip bir ürün var, adet değerini arttır
 		userProductList[productIndex].quantity++;
-		sendData(userProductList[productIndex],'/cart/addToCart');
+		sendData(userProductList[productIndex], '/cart/addToCart');
 	}
 	refreshCart();
 }
 
 
-function removeToCart(jsonProduct) {
-	var product = JSON.parse(jsonProduct);
+function removeToCart(productId) {
 	// userProductList listesinde bu id'ye sahip ürünü bulun
-	var productIndex = userProductList.findIndex(function(finded) {
-		return finded.id == product.id;
+	var hedefIndex = -1;
+	userProductList.forEach(function(urun, index) {
+		console.log("index: "+index+" urun.id: "+ urun.id+"urun Adı: "+JSON.stringify(urun)+" productId: "+productId);
+		if (urun.id == productId) {
+			hedefIndex = index;
+			return;
+		}
 	});
-
-	if (productIndex !== -1) {
+	if (hedefIndex != -1) {
 		// bu id'ye sahip bir ürün var, listeden çıkar
-		userProductList.splice(productIndex, 1);
+		console.log("Donguye girdi");
+		userProductList.splice(hedefIndex, 1);
 	}
+	
 	refreshCart();
 }
 function refreshCart() {
 	const productList = document.querySelector("#product-list-ul");
-	console.log(productList);
 	productList.innerHTML = ""; // Eski ürünleri temizle
 	userProductList.forEach((userProduct) => {
 		// Yeni ürünleri ekle
@@ -50,8 +54,8 @@ function refreshCart() {
                       <div class="left-info">
                           <div class="product-title"><a href="#" class="product-name">${userProduct.product.name}</a></div>
                           <div class="price">
-                              <ins><span class="price-amount"><span class="currencySymbol">£</span>${userProduct.product.price}</span></ins>
-                              <del><span class="price-amount"><span class="currencySymbol">£</span>${userProduct.product.price}</span></del>
+                              <ins><span class="price-amount"><span class="currencySymbol"></span>${userProduct.product.price}</span></ins>
+                              <del><span class="price-amount"><span class="currencySymbol"></span>${userProduct.product.price}</span></del>
                           </div>
                           <div class="qty">
                               <label >Adet: </label>
@@ -60,29 +64,29 @@ function refreshCart() {
                       </div>
                       <div class="action">
                           <a class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                          <a class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          <a onclick="removeToCart(${userProduct.product.id})" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                       </div>
                     </div>`;
 		productList.appendChild(li);
 	});
 }
-function sendData(data,endpoint) {
-	console.log("SendData:"+data+endpoint);
+function sendData(data, endpoint) {
+	console.log("SendData:" + data + endpoint);
 	const xhr = new XMLHttpRequest();
 	xhr.open('POST', endpoint);
 	xhr.setRequestHeader('Content-type', 'application/json');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
-//				const resultDiv = document.querySelector('#result');
-//				resultDiv.innerHTML = response.message;
-//								console.log("RESPONS: "+xhr.responseText);
+				//				const resultDiv = document.querySelector('#result');
+				//				resultDiv.innerHTML = response.message;
+				//								console.log("RESPONS: "+xhr.responseText);
 			} else {
 				console.error('Error! Sendding Cart data to backend');
 			}
-//			hideLoading();
+			//			hideLoading();
 		} else {
-//			showLoading();
+			//			showLoading();
 		}
 	};
 	xhr.send(JSON.stringify(data));
