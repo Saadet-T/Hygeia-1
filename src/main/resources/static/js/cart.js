@@ -8,15 +8,15 @@ function addToCart(data) {
 	var productIndex = userProductList.findIndex(function(finded) {
 		return finded.product.id == product.id;
 	});
-	if (productIndex === -1) {
+	if (productIndex == -1) {
 		// bu id'ye sahip bir ürün yok, yeni bir ürün ekle
 		userProductList.push({ status: 1, quantity: 1, product: product });
-		sendData(userProductList[userProductList.length - 1], '/cart/addToCart');
+		sendData(userProductList[userProductList.length - 1], '/cart/updateCart');
 		console.log("Sended product: " + JSON.stringify(userProductList[userProductList.length - 1]));
 	} else {
 		// bu id'ye sahip bir ürün var, adet değerini arttır
 		userProductList[productIndex].quantity++;
-		sendData(userProductList[productIndex], '/cart/addToCart');
+		sendData(userProductList[productIndex], '/cart/updateCart');
 	}
 	refreshCart();
 }
@@ -25,19 +25,23 @@ function addToCart(data) {
 function removeToCart(productId) {
 	// userProductList listesinde bu id'ye sahip ürünü bulun
 	var hedefIndex = -1;
-	userProductList.forEach(function(urun, index) {
-		console.log("index: "+index+" urun.id: "+ urun.id+"urun Adı: "+JSON.stringify(urun)+" productId: "+productId);
-		if (urun.id == productId) {
+	userProductList.forEach(function(userProduct, index) {
+		if (userProduct.product.id == productId) {
 			hedefIndex = index;
 			return;
 		}
 	});
 	if (hedefIndex != -1) {
-		// bu id'ye sahip bir ürün var, listeden çıkar
-		console.log("Donguye girdi");
-		userProductList.splice(hedefIndex, 1);
+		if (userProductList[hedefIndex].quantity > 1) {
+			userProductList[hedefIndex].quantity = userProductList[hedefIndex].quantity - 1;
+			sendData(userProductList[hedefIndex], '/cart/updateCart');
+		}
+		else {
+			sendData(userProductList[hedefIndex].id, '/cart/removeFromCart');
+			userProductList.splice(hedefIndex, 1);
+		}
+
 	}
-	
 	refreshCart();
 }
 function refreshCart() {
@@ -70,24 +74,18 @@ function refreshCart() {
 		productList.appendChild(li);
 	});
 }
-function sendData(data, endpoint) {
-	console.log("SendData:" + data + endpoint);
-	const xhr = new XMLHttpRequest();
-	xhr.open('POST', endpoint);
-	xhr.setRequestHeader('Content-type', 'application/json');
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4) {
-			if (xhr.status === 200) {
-				//				const resultDiv = document.querySelector('#result');
-				//				resultDiv.innerHTML = response.message;
-				//								console.log("RESPONS: "+xhr.responseText);
-			} else {
-				console.error('Error! Sendding Cart data to backend');
-			}
-			//			hideLoading();
-		} else {
-			//			showLoading();
+async function sendData(productData, endpoint) {
+	console.log("SendData- " + "data: " + JSON.stringify(productData) + " endpoint: " + endpoint);
+	await $.ajax({
+		url: endpoint,
+		type: 'POST',
+		data: JSON.stringify(productData),
+		contentType: 'application/json',
+		success: function(response) {
+			console.log("sendData() response: " + response);
+		},
+		error: function(sendData, status, error) {
+			console.error('sendData() istek hatası:', error);
 		}
-	};
-	xhr.send(JSON.stringify(data));
+	});
 }

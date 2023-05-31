@@ -16,7 +16,6 @@ function sendUsernameToBackend() {
     const start = payload.indexOf("{\"sub\":\"") + 8;
     const end = payload.indexOf("\",", start);
     const username = payload.substring(start, end);
-    console.log("aaaaaa");
     const xhr = new XMLHttpRequest();
 	xhr.open('POST', "http://localhost:8080/getinfo");
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

@@ -1,10 +1,13 @@
 package com.backend.hygeia.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.backend.hygeia.entities.UserProduct;
 import com.backend.hygeia.services.UserProductService;
@@ -16,11 +19,18 @@ public class CartController {
 	@Autowired
 	UserProductService userProductService;
 	
-	@PostMapping("/addToCart")
-	public void getLogin(@RequestBody UserProduct userProduct) {
+	@PostMapping("/updateCart")
+	public void addToCart(@RequestBody UserProduct userProduct) {
 		
 		userProductService.saveToDatabase(userProduct);
 	}
+	
+	@PostMapping("/removeFromCart")
+	public void removeFromCart(@RequestBody Long userProductId) {
+		
+		userProductService.deleteById(userProductId);
+	}
+	
 
 
 }

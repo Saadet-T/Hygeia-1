@@ -25,7 +25,9 @@
 
 								<li class="menu-item"><a href="/">Ana Sayfa</a></li>
 								<li class="menu-item"><a href="/ContactUS">İletişim</a></li>
-	
+								<li class="menu-item" th:if="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}"><a href="/getinfo" onclick="sendUsernameToBackend()">Hesabım</a></li>
+								<li class="menu-item" th:if="${#authentication != null and #authentication.isAuthenticated() and #authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a href="/adminUsers" >Yönetim Paneli</a></li>
+
 
 							</ul>
 						</div>
@@ -34,16 +36,12 @@
 						<div class="primary-menu">
 							<ul class="menu organic-menu clone-main-menu clone-primary-menu"
 								id="primary-menu" data-menuname="main menu">
-								<li
-									th:unless="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}"><a
-									href="login" class="login-link"><img
-										src="images/icons/login.png" height="30" width="30"></img>Giriş/Kayıt</a></li>
-								<li
-									th:if="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}">
-									<a href="/getinfo" onclick="sendUsernameToBackend()" class="login-link"
-									th:utext="'<img src=\'images/icons/login.png\' height=\'30\' width=\'30\'></img> ' + Hesabım"></a>
-
+								<li th:unless="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}">
+									<a href="/login" class="login-link"><img src="images/icons/login.png" height="30" width="30"></img>Giriş/Kayıt</a></li>
+								<li th:if="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}">
+									<a href="/logout" class="login-link"><img src="images/icons/login.png" height="30" width="30"></img>Çıkış Yap</a>
 								</li>
+
 							</ul>
 						</div>
 					</div>
@@ -95,8 +93,10 @@
 														</div>
 														<div class="action">
 															<a class="edit"><i class="fa fa-pencil"
-																aria-hidden="true"></i></a> <a th:onclick="'removeToCart('+${userProduct.product.id}+')'" class="remove"><i
-																class="fa fa-trash-o" aria-hidden="true"></i></a>
+																aria-hidden="true"></i></a> <a
+																th:onclick="'removeToCart('+${userProduct.product.id}+')'"
+																class="remove"><i class="fa fa-trash-o"
+																aria-hidden="true"></i></a>
 														</div>
 													</div>
 												</li>
@@ -104,8 +104,9 @@
 											<p class="btn-control">
 
 												<button class="btn view-cart">view cart</button>
-											<form method="POST" action="/checkout" th:if="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}">>
-												<input type="hidden" name="user_id"
+											<form method="POST" action="/checkout"
+												th:if="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}">
+												> <input type="hidden" name="user_id"
 													th:value="${#authentication.principal.id}">
 												<button class="btn">checkout</button>
 											</form>

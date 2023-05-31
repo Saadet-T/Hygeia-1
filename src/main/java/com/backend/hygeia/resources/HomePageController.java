@@ -1,6 +1,7 @@
 package com.backend.hygeia.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -108,6 +109,15 @@ public class HomePageController {
 	@GetMapping("/ContactUS")
 	String contactus() {
 		return "ContactUs";
+	}
+	
+	//or hasIpAddress('192.168.0.100') or hasIpAddress('194.27.196.131')
+	@PreAuthorize("hasRole('ROLE_ADMIN') ")
+	@GetMapping("/adminUsers")
+	String adminUsers(Model model) {
+		List<User> userList = userRepository.findAll();
+		model.addAttribute("userList", userList);
+		return "admin_users";
 	}
 	
 	@GetMapping("/updateUserInfo")

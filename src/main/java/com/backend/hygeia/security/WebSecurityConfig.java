@@ -86,5 +86,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/fonts/**");
     }
+    
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring()
+//           .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/fonts/**");
+//    }
+//    
+//    private AccessDecisionManager accessDecisionManager() {
+//        WebExpressionVoter expressionVoter = new WebExpressionVoter();
+//        expressionVoter.setExpressionHandler(customWebSecurityExpressionHandler());
+//
+//        return new AffirmativeBased(Arrays.asList(expressionVoter));
+//    }
+//
+//    private CustomDefaultWebSecurityExpressionHandler customWebSecurityExpressionHandler() {
+//        return new CustomDefaultWebSecurityExpressionHandler();
+//    }
 }
 
