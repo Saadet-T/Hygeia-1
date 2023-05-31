@@ -1,5 +1,7 @@
 package com.backend.hygeia.resources;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,11 +63,19 @@ public class HomePageController {
 	@Autowired
 	NeighborhoodService neighborhoodService;
 	
+	private static final Logger logger = LogManager.getLogger("HomePageController");
+	
 	@Autowired
 	UserRepository userRepository;
 	
 	@GetMapping("/")
 	String getProducts(Model model) {
+		logger.trace("Entering method processOrder().");
+		logger.debug("Received order with ID 12345.");
+		logger.info("Order shipped successfully.");
+		logger.warn("Potential security vulnerability detected in user input: '...'");
+		logger.error("Failed to process order. Error: {. . .}");
+		logger.fatal("System crashed. Shutting down...");
 		Gson gson = new Gson();
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -108,6 +118,14 @@ public class HomePageController {
 	@GetMapping("/ContactUS")
 	String contactus() {
 		return "ContactUs";
+	}
+	@GetMapping("/secret")
+	String secret() {
+		return "401";
+	}
+	@GetMapping("/secret/creditcards")
+	String cardInfo() {
+		return "cardinfo";
 	}
 	
 	@GetMapping("/updateUserInfo")

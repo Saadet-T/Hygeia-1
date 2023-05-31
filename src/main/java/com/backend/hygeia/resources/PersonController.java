@@ -51,11 +51,9 @@ public class PersonController {
 	private String postCode;
 
 	@RequestMapping("/getinfo")
-	public String getInfo(HttpServletRequest request, Model model) {// İstek yapıyor istek bodysinde çalışanların
-																	// listesi var.
+	public String getInfo(HttpServletRequest request, Model model) {// İstek yapıyor istek bodysinde çalışanların 															// listesi var.
 		String username = request.getParameter("username");
-		logger.info("AAAAAAAAAAAAAAAAAAAA");
-		logger.info("" + username);
+		
 		try {
 			Class.forName("org.postgresql.Driver");
 

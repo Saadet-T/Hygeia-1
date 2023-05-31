@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biolife - Organic Food</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Cairo:400,600,700&amp;display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:600&amp;display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap"
+	rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon"
+	href="../static/images/favicon.png" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/font-awesome.min.css"
+	th:href="@{/css/font-awesome.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/nice-select.css" th:href="@{/css/nice-select.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/slick.min.css" th:href="@{/css/slick.min.css}">
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{/css/style.css}">
+<link rel="stylesheet" type="text/css"
+	href="../static/css/main-color.css" th:href="@{/css/main-color.css}">
+	<link rel="stylesheet" type="text/css"
+	href="../static/css/cardinfo.css" th:href="@{/css/cardinfo.css}">
+
+</head>
+<body class="biolife-body">
+
+	<!-- Preloader -->
+	<div id="biof-loading">
+		<div class="biof-loading-center">
+			<div class="biof-loading-center-absolute">
+				<div class="dot dot-one"></div>
+				<div class="dot dot-two"></div>
+				<div class="dot dot-three"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- HEADER -->
+	<div th:replace="fragments/header :: header"></div>
+
+
+	<div class="page-contain login-page">
+
+		<!-- Main content -->
+		<div id="main-content" class="main-content">
+			<div class="container">
+
+				<div class="row">
+
+
+					<!--Go to Register form-->
+				<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Kart Üzerindeki İsim</th>
+      <th scope="col">Kart Numarası</th>
+      <th scope="col">Son kullanma tarihi</th>
+      <th scope="col">CVE numarası</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Saadet Elif Tokuoğlu</td>
+      <td>1212 1313 1414 1515</td>
+      <td>03/35</td>
+       <td>895</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Eren Ugurlu</td>
+      <td>1515 1717 1818 1919</td>
+      <td>01/32</td>
+       <td>589</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Ömer Habip Tokuoğlu</td>
+      <td>2929 2828 2626 2727</td>
+      <td>09/34</td>
+       <td>884</td>
+    </tr>
+
+  </tbody>
+</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- FOOTER -->
+	<div th:replace="fragments/footer :: footer"></div>
+
+	<!-- Scroll Top Button -->
+	<a class="btn-scroll-top"><i class="organic-icon icon-left-arrow"></i></a>
+
+	<script src="../static/js/jquery-3.4.1.min.js"
+		th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script src="../static/js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/jquery.countdown.min.js"
+		th:src="@{/js/jquery.countdown.min.js}"></script>
+	<script src="../static/js/jquery.nice-select.min.js"
+		th:src="@{/js/jquery.nice-select.min.js}"></script>
+	<script src="../static/js/jquery.nicescroll.min.js"
+		th:src="@{/js/jquery.nicescroll.min.js}"></script>
+	<script src="../static/js/slick.min.js" th:src="@{/js/slick.min.js}"></script>
+	<script src="../static/js/organic.framework.js"
+		th:src="@{/js/organic.framework.js}"></script>
+	<script src="../static/js/functions.js" th:src="@{/js/functions.js}"></script>
+
+</body>
+
+</html>

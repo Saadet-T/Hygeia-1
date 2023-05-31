@@ -29,13 +29,12 @@ public class ContactUsController {
 	public String getLogin(HttpServletRequest request, HttpServletResponse response){
 		
         final String username = "saadetelif@outlook.com.tr";
-        final String password = "************************";
+        final String password = "*****************";
 		String Email = request.getParameter("email");
 		
 		String PhoneNumber = request.getParameter("phonenumber");
 		String Mesaj = request.getParameter("message");
 		String Konu = request.getParameter("subject");
-		logger.info("Mail adres",Konu);
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");

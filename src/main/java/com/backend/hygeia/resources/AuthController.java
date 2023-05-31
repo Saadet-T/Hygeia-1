@@ -11,6 +11,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -52,19 +54,28 @@ public class AuthController {
 
 	@Autowired
 	JwtUtils jwtUtils;
-	
+	private static final Logger logger = LogManager.getLogger("AuthController");
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	    String username = request.getParameter("username");
 	    String password = request.getParameter("password");
-
+	    logger.trace("Entering method processOrder().");
+	    logger.debug("Received order with ID 12345.");
+	    logger.info("Order shipped successfully.");
+	    logger.warn("Potential security vulnerability detected in user input: '...'");
+	    logger.error("Failed to process order. Error: {. . .}");
+	    logger.fatal("System crashed. Shutting down...");
+	    logger.info("Giriş yapan kullanıcı",username); 
 	    try {
 	        Authentication authentication = authenticationManager.authenticate(
 	                new UsernamePasswordAuthenticationToken(username, password));
 
 	        String jwt = jwtUtils.generateJwtToken(authentication);
-
+//	        logger.
+	        logger.debug("Debug log message");
+	        logger.info("Info log message");
+	        logger.error("Error log message");
 	        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 	        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 	                .collect(Collectors.toList());
