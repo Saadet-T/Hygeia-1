@@ -20,8 +20,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.backend.hygeia.entities.User;
 import com.backend.hygeia.entities.responses.MessageResponse;
@@ -113,4 +117,6 @@ public class PersonController {
 		
 		return ResponseEntity.ok(new MessageResponse("User update successfully!"));
 	}
+
+	
 }
