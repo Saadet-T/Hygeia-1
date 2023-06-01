@@ -147,6 +147,10 @@ public class HomePageController {
 	String forgetPasswd() {
 		return "ForgetPasswd";
 	}
+	@GetMapping("/orderCompleated")
+	String orderCompleated() {
+		return "orderCompleated";
+	}
 	
 	@RequestMapping("/ForgetPassword")
 	public String fogetPassword(HttpServletRequest request, Model model){
