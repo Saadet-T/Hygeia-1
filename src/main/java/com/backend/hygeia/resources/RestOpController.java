@@ -15,7 +15,6 @@ public class RestOpController {
 	
 	@GetMapping("/delete_user/{id}")
 	public void deleteUser(@PathVariable Long id ){
-		System.err.println("OLDU");
-//		userRepository.delete(userRepository.findById(id).get());
+		userRepository.delete(userRepository.findById(id).get());
 	}
 }

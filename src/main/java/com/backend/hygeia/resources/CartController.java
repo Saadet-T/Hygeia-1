@@ -20,9 +20,9 @@ public class CartController {
 	UserProductService userProductService;
 	
 	@PostMapping("/updateCart")
-	public void addToCart(@RequestBody UserProduct userProduct) {
-		
-		userProductService.saveToDatabase(userProduct);
+	public UserProduct addToCart(@RequestBody UserProduct userProduct) {
+		UserProduct up = userProductService.saveToDatabase(userProduct);
+		return up;
 	}
 	
 	@PostMapping("/removeFromCart")
