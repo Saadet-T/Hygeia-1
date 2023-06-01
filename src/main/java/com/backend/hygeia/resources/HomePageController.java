@@ -185,6 +185,7 @@ public class HomePageController {
 				} catch (MessagingException e) {
 					throw new RuntimeException(e);
 				}
+				model.addAttribute("mail", mail);
 				model.addAttribute("code", code);
 	return "RenewPasswd";
 	}
