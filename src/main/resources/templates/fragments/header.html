@@ -26,7 +26,7 @@
 								<li class="menu-item"><a href="/">Ana Sayfa</a></li>
 								<li class="menu-item"><a href="/ContactUS">İletişim</a></li>
 								<li class="menu-item" th:if="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}"><a onclick="sendUsernameToBackend()">Hesabım</a></li>
-								<li class="menu-item" th:if="${#authentication != null and #authentication.isAuthenticated() and #authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a href="/adminUsers" >Yönetim Paneli</a></li>
+								<li class="menu-item" th:if="${#authentication != null and #authentication.isAuthenticated() and #authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a href="/administration" >Yönetim Paneli</a></li>
 
 
 							</ul>
@@ -103,12 +103,12 @@
 											</ul>
 											<p class="btn-control">
 
-												<button class="btn view-cart">view cart</button>
+<!-- 												<button class="btn view-cart">view cart</button> -->
 											<form method="POST" action="/checkout"
 												th:if="${#authentication != null and #authentication.isAuthenticated() and #authentication.principal.class.simpleName ne 'String'}">
-												> <input type="hidden" name="user_id"
+												 <input type="hidden" name="user_id"
 													th:value="${#authentication.principal.id}">
-												<button class="btn">checkout</button>
+												<button class="btn view-cart">Sipariş Oluştur</button>
 											</form>
 
 											</p>
