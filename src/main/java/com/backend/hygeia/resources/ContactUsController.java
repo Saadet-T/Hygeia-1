@@ -1,5 +1,9 @@
 package com.backend.hygeia.resources;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -14,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +34,7 @@ public class ContactUsController {
 	public String getLogin(HttpServletRequest request, HttpServletResponse response){
 		
         final String username = "saadetelif@outlook.com.tr";
-        final String password = "*****************";
+        final String password = "Superisi123";
 		String Email = request.getParameter("email");
 		
 		String PhoneNumber = request.getParameter("phonenumber");
@@ -71,5 +76,6 @@ public class ContactUsController {
 			throw new RuntimeException(e);
 		}
 	}
+
 
 }

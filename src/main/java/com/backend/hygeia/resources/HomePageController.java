@@ -3,14 +3,17 @@ package com.backend.hygeia.resources;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -22,6 +25,7 @@ import com.backend.hygeia.entities.UserProduct;
 import com.backend.hygeia.entities.address.City;
 import com.backend.hygeia.entities.address.District;
 import com.backend.hygeia.entities.address.Neighborhood;
+import com.backend.hygeia.entities.responses.MessageResponse;
 import com.backend.hygeia.repositories.ProductRepository;
 import com.backend.hygeia.repositories.UserRepository;
 import com.backend.hygeia.security.services.UserDetailsImpl;
@@ -36,9 +40,26 @@ import com.backend.hygeia.utils.UserProductMapper;
 import com.google.gson.Gson;
 
 import java.io.Console;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.*;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class HomePageController {
@@ -71,12 +92,6 @@ public class HomePageController {
 	
 	@GetMapping("/")
 	String getProducts(Model model) {
-		logger.trace("Entering method processOrder().");
-		logger.debug("Received order with ID 12345.");
-		logger.info("Order shipped successfully.");
-		logger.warn("Potential security vulnerability detected in user input: '...'");
-		logger.error("Failed to process order. Error: {. . .}");
-		logger.fatal("System crashed. Shutting down...");
 		Gson gson = new Gson();
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -128,6 +143,51 @@ public class HomePageController {
 	String cardInfo() {
 		return "cardinfo";
 	}
+	@GetMapping("/forgetPasswd")
+	String forgetPasswd() {
+		return "ForgetPasswd";
+	}
+	
+	@RequestMapping("/ForgetPassword")
+	public String fogetPassword(HttpServletRequest request, Model model){
+
+		String mail = request.getParameter("mail");
+		String code = request.getParameter("code");
+		
+			System.out.println(""+mail);
+
+			 final String username = "saadetelif@outlook.com.tr";
+		        final String password = "Superisi123";
+				Properties props = new Properties();
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.starttls.enable", "true");
+				props.put("mail.smtp.host", "smtp-mail.outlook.com");
+				props.put("mail.smtp.port", "587");
+
+				Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(username, password);
+					}
+				});
+
+				try {
+
+					Message message = new MimeMessage(session);
+					message.setFrom(new InternetAddress("saadetelif@outlook.com.tr"));
+					message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(""+mail));
+					message.setSubject("Parola sıfırlama kodu:");
+					message.setText("Merhaba parola sıfırlama için kodunuz : "+code +"\n\n İyi günler dileriz.");
+
+
+					Transport.send(message);
+					System.out.println("Mail gönderildi.");
+
+				} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				}
+				model.addAttribute("code", code);
+	return "RenewPasswd";
+	}
 	
 	//or hasIpAddress('192.168.0.100') or hasIpAddress('194.27.196.131')
 	@PreAuthorize("hasRole('ROLE_ADMIN') ")
@@ -178,6 +238,29 @@ public class HomePageController {
 		return "checkout";
 	}
 	
+	@Autowired
+	PasswordEncoder encoder;
+	@PostMapping("/resetPassword")
+	public String resetPassword(HttpServletRequest request, HttpServletResponse response)
+			// Telefon numarası , adres , posta kodu eklenecek
+	
+			throws URISyntaxException, IOException {
+		String password = request.getParameter("password1");
+		String email = request.getParameter("mail");
 
+		try {
+			Class.forName("org.postgresql.Driver");
+
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/hygeiaDB", "postgres",
+					"admin");
+			Statement stmt = con.createStatement();
+			boolean hasMoreResults = stmt.execute(
+					"UPDATE users SET password='"+(encoder.encode(password)+"' WHERE users.email='"+email+"';" ));
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return "login";
+	}
 
 }

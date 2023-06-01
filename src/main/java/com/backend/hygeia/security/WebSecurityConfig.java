@@ -62,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.
         authorizeRequests()
         .antMatchers("/").permitAll()
-        .antMatchers("/login","/register","/api/auth/**").permitAll()
+        .antMatchers("/login","/register","/forgetPasswd","/ForgetPassword","/api/auth/**").permitAll()
         .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
         .authenticated().and().csrf().disable().formLogin()
         .loginPage("/login").failureUrl("/login?error=true")
