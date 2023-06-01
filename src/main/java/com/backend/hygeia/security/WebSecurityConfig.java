@@ -1,6 +1,7 @@
 package com.backend.hygeia.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -87,21 +88,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/fonts/**");
     }
     
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring()
-//           .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/fonts/**");
-//    }
-//    
-//    private AccessDecisionManager accessDecisionManager() {
-//        WebExpressionVoter expressionVoter = new WebExpressionVoter();
-//        expressionVoter.setExpressionHandler(customWebSecurityExpressionHandler());
-//
-//        return new AffirmativeBased(Arrays.asList(expressionVoter));
-//    }
-//
-//    private CustomDefaultWebSecurityExpressionHandler customWebSecurityExpressionHandler() {
-//        return new CustomDefaultWebSecurityExpressionHandler();
-//    }
+    @Bean
+    public FilterRegistrationBean<IPFilter> ipFilterRegistrationBean() {
+        FilterRegistrationBean<IPFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new IPFilter());
+        registrationBean.addUrlPatterns("/adminUsers/*"); // Filtrenin uygulanacağı URL deseni
+        return registrationBean;
+    }
 }
 

@@ -2,21 +2,21 @@ var userProductListElem = document.getElementById("user-product-list-div");
 var userProductListJSON = userProductListElem.getAttribute("user-product-list");
 var userProductList = JSON.parse(userProductListJSON);
 
-function addToCart(data) {
-	var product = JSON.parse(data.getAttribute("data-product"));
+async function addToCart(data) {
+	var product = await JSON.parse(data.getAttribute("data-product"));
 	// userProductList listesinde bu id'ye sahip ürün var mı kontrol edin
-	var productIndex = userProductList.findIndex(function(finded) {
-		return finded.product.id == product.id;
+	var productIndex = await userProductList.findIndex(function(finded) {
+		return finded.product.name == product.name;
 	});
 	if (productIndex == -1) {
 		// bu id'ye sahip bir ürün yok, yeni bir ürün ekle
-		userProductList.push({ status: 1, quantity: 1, product: product });
-		sendData(userProductList[userProductList.length - 1], '/cart/updateCart');
+		var userProduct = await sendData({ status: 1, quantity: 1, product: product }, '/cart/updateCart');
+		await userProductList.push(userProduct);
 		console.log("Sended product: " + JSON.stringify(userProductList[userProductList.length - 1]));
 	} else {
 		// bu id'ye sahip bir ürün var, adet değerini arttır
 		userProductList[productIndex].quantity++;
-		sendData(userProductList[productIndex], '/cart/updateCart');
+		await sendData(userProductList[productIndex], '/cart/updateCart');
 	}
 	refreshCart();
 }
@@ -76,7 +76,7 @@ function refreshCart() {
 }
 async function sendData(productData, endpoint) {
 	console.log("SendData- " + "data: " + JSON.stringify(productData) + " endpoint: " + endpoint);
-	await $.ajax({
+	return await $.ajax({
 		url: endpoint,
 		type: 'POST',
 		data: JSON.stringify(productData),

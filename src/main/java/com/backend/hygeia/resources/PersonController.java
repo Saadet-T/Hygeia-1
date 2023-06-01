@@ -54,10 +54,9 @@ public class PersonController {
 	private String phone;
 	private String postCode;
 
-	@RequestMapping("/getinfo")
+	@RequestMapping("/getInfo")
 	public String getInfo(HttpServletRequest request, Model model) {// İstek yapıyor istek bodysinde çalışanların 															// listesi var.
 		String username = request.getParameter("username");
-		
 		try {
 			Class.forName("org.postgresql.Driver");
 
@@ -87,7 +86,7 @@ public class PersonController {
 		model.addAttribute("address", address);
 		model.addAttribute("phone", phone);
 		model.addAttribute("postCode", postCode);
-		return "getinfo";
+		return "getInfo";
 	}
 
 	@PostMapping("/updateUserInfo")

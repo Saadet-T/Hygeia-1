@@ -17,7 +17,7 @@ function sendUsernameToBackend() {
     const end = payload.indexOf("\",", start);
     const username = payload.substring(start, end);
     const xhr = new XMLHttpRequest();
-	xhr.open('POST', "http://localhost:8080/getinfo");
+	xhr.open('POST', "http://localhost:8080/getInfo");
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
@@ -25,6 +25,7 @@ function sendUsernameToBackend() {
 //				const resultDiv = document.querySelector('#result');
 //				resultDiv.innerHTML = response.message;
 //								console.log("RESPONS: "+xhr.responseText);
+				window.location.href = "/getInfo";
 			} else {
 				console.error('Error! Sendding Cart data to backend');
 			}

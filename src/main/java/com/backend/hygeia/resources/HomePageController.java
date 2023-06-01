@@ -130,8 +130,8 @@ public class HomePageController {
 	}
 	
 	//or hasIpAddress('192.168.0.100') or hasIpAddress('194.27.196.131')
-	@PreAuthorize("hasRole('ROLE_ADMIN') ")
-	@GetMapping("/adminUsers")
+//	@PreAuthorize("hasRole('ROLE_ADMIN') ")
+	@GetMapping("/administration")
 	String adminUsers(Model model) {
 		List<User> userList = userRepository.findAll();
 		model.addAttribute("userList", userList);
