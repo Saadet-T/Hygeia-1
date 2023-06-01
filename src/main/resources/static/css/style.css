@@ -236,8 +236,8 @@ select option{
     font-family: 'organic';
     src: url('../fonts/organicbbd0.eot?t4lhqt');
     src: url('../fonts/organicbbd0.eot?t4lhqt#iefix') format('embedded-opentype'),
-         url('../fonts/organicbbd0.ttf?t4lhqt') format('truetype'),
-         url('../fonts/organicbbd0.woff?t4lhqt') format('woff'),
+/*          url('../fonts/organicbbd0.ttf?t4lhqt') format('truetype'), */
+/*          url('../fonts/organicbbd0.woff?t4lhqt') format('woff'), */
          url('../fonts/organicbbd0.svg?t4lhqt#organic') format('svg');
     font-weight: normal;
     font-style: normal;
@@ -6782,7 +6782,6 @@ body.open-overlay #overlay{
 }
 .slider-opt03__layout01 .media{
     z-index: 10;
-    background-image: url('../images/home-03/slide-01.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
