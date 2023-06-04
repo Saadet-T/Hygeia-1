@@ -61,6 +61,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @Controller
 public class HomePageController {
 
@@ -85,11 +86,10 @@ public class HomePageController {
 	@Autowired
 	NeighborhoodService neighborhoodService;
 	
-	private static final Logger logger = LogManager.getLogger("HomePageController");
 	
 	@Autowired
 	UserRepository userRepository;
-	
+	 static Logger logger = LogManager.getLogger(HomePageController.class.getName());
 	@GetMapping("/")
 	String getProducts(Model model) {
 		Gson gson = new Gson();
@@ -112,13 +112,24 @@ public class HomePageController {
         model.addAttribute("noticeList", noticeList);
         model.addAttribute("userProductList", userProductList);
         model.addAttribute("userProductListJSON", userProductListJSON);
+        System.setProperty("log4j.configuration", "log4j.properties");
+
+
+     
         //Return edilen isim sayfanın ismidir index.html ye götürür buraya gelen istekleri
         return "index";
 	}
 	@GetMapping("/login")
 	String login() {
+
         return "login";
 	}
+	@GetMapping("/access.log")
+	String logs() {
+		   // Log messages
+        return "application";
+	}
+	
 	@GetMapping("/OpenRedirectForm")
 	String getProducts() {
         return "OpenRedirectForm";
