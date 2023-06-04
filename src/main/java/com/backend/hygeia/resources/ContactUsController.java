@@ -1,5 +1,9 @@
 package com.backend.hygeia.resources;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,25 +22,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-@RestController
+@Controller
 public class ContactUsController {
 	static {
 		System.setProperty("com.sun.jndi.ldap.object.trustURLCodebase", "true");
 		
 	}
 	private static final Logger logger = LogManager.getLogger("ContactUsController");
-
+	
 	@RequestMapping("/MailSend")
-	public String getLogin(HttpServletRequest request, HttpServletResponse response){
-		
+	public String getLogin(HttpServletRequest request, HttpServletResponse response, @RequestParam("file") MultipartFile file, Model model){
         final String username = "saadetelif@outlook.com.tr";
-        final String password = "Superisi123";
+        final String password = "HYGIEA1234deneme";
 		String Email = request.getParameter("email");
-		
 		String PhoneNumber = request.getParameter("phonenumber");
 		String Mesaj = request.getParameter("message");
 		String Konu = request.getParameter("subject");
@@ -45,6 +50,18 @@ public class ContactUsController {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp-mail.outlook.com");
 		props.put("mail.smtp.port", "587");
+
+		
+		  if (!file.isEmpty()) {
+	            try {
+	                // Resim dosyasını istediğiniz bir yere kaydetmek için aşağıdaki gibi bir kod kullanabilirsiniz
+	                String fileName = file.getOriginalFilename();
+	                String uploadPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\recievedImages\\"; // Yükleme dizini
+	                file.transferTo(new File(uploadPath + fileName));
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        } 
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -60,17 +77,16 @@ public class ContactUsController {
 			message.setSubject("Konu");
 			message.setText("Konu:" + Konu + "\n\nMail Adresi:" + Email + "\n\n Telefon Numarası:" + PhoneNumber
 					+ "\n\n Mesaj:" + Mesaj);
-			String returnValue = "<!DOCTYPE html><html><head><title>Page Title</title></head><body><div style=\"background-image: url('https://p1.pxfuel.com/preview/128/2/373/twilight-aurora-orange-abstract.jpg');\r\n"
-					+ "background-size: cover; height:700px; padding-top: 80px; text-align: center;\"><img src=\"https://domf5oio6qrcr.cloudfront.net/medialibrary/11499/3b360279-8b43-40f3-9b11-604749128187.jpg\" style=\"height:150px; border-radius: 50%; border: 10px solid #FEDE00;\"><p style=\"font-size:25px; color:white; margin:10px;\">Mailiniz aşağıdaki bilgiler ile gönderilmiştir;</p>"
-					+ "<p style=\"font-size:20px; color:white; margin:10px;\">" + "<br>\n\nKonu;" + Konu
-					+ "<br>\n\nMail Adresi:" + Email + "<br>\n\n Telefon Numarası:" + PhoneNumber + "<br>\n\n Mesaj:\n"
-					+ Mesaj + "<br>\n\n<a href=\"http://localhost:8080\"> anasayfaya dönmek için tıklayınız</a>"
-					+ "</body>\r\n" + "</html>";
 
+			model.addAttribute("Email", Email);
+			model.addAttribute("PhoneNumber", PhoneNumber);
+			model.addAttribute("Mesaj", Mesaj);
+			model.addAttribute("Konu", Konu);
+			model.addAttribute("ImgName",file.getOriginalFilename());
 			Transport.send(message);
 
 			System.out.println("Mail gönderildi.");
-			return returnValue;
+			return "mailSended";
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
