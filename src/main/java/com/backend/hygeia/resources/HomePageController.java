@@ -119,17 +119,9 @@ public class HomePageController {
 	String login() {
         return "login";
 	}
-	@GetMapping("/OpenRedirectForm")
-	String getProducts() {
-        return "OpenRedirectForm";
-	}
 	@GetMapping("/register")
 	String register() {
         return "register";
-	}
-	@GetMapping("/OpenRedirect")
-	String getProdu() {
-        return "OpenRedirect";
 	}
 	@GetMapping("/ContactUS")
 	String contactus() {
