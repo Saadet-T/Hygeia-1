@@ -60,22 +60,14 @@ public class AuthController {
 	public ResponseEntity<?> authenticateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	    String username = request.getParameter("username");
 	    String password = request.getParameter("password");
-	    logger.trace("Entering method processOrder().");
-	    logger.debug("Received order with ID 12345.");
-	    logger.info("Order shipped successfully.");
-	    logger.warn("Potential security vulnerability detected in user input: '...'");
-	    logger.error("Failed to process order. Error: {. . .}");
-	    logger.fatal("System crashed. Shutting down...");
-	    logger.info("Giriş yapan kullanıcı",username); 
+	    
 	    try {
 	        Authentication authentication = authenticationManager.authenticate(
 	                new UsernamePasswordAuthenticationToken(username, password));
 
 	        String jwt = jwtUtils.generateJwtToken(authentication);
-//	        logger.
-	        logger.debug("Debug log message");
-	        logger.info("Info log message");
-	        logger.error("Error log message");
+	        logger.info("token:"+jwt);
+
 	        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 	        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 	                .collect(Collectors.toList());
@@ -95,7 +87,9 @@ public class AuthController {
 	        
 	    } catch (AuthenticationException e) {
 	        // Kullanıcı adı veya şifre hatalı olduğunda buraya düşer
+	    	logger.info( username +"kullanıcısı için hatalı giriş denemesi.");
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).header(HttpHeaders.LOCATION, "/login").body(null);
+	        
 	    }
 	}
 
