@@ -11,9 +11,6 @@ INSERT INTO public.categories(
 	VALUES ( 'Yumuşak Meyveler', 'yumusakMeyveler', 0);
 INSERT INTO public.categories(
 	 description, name, status)
-	VALUES ( 'Kırmızı Meyveler', 'kirmiziMeyveler', 0);
-INSERT INTO public.categories(
-	 description, name, status)
 	VALUES ( 'Turunçgiller', 'turuncgiller', 1);
 INSERT INTO public.categories(
 	 description, name, status)
@@ -31,24 +28,58 @@ INSERT INTO public.categories(
 	
 INSERT INTO public.notices(
 	 description, first_line, img_path, name, second_line, status, third_line)
-	VALUES ( 'offer2', 'first_line', 'images/offers/offer2.jpg', 'offer2', 'second_line', '1', 'third_line');
+	VALUES ( 'offer2', '100 TL ve üzeri alışverişinizde', 'images/offers/offer2.jpg', 'offer2', 'Fırsat', 1, 'Ücretsiz kargo');
 INSERT INTO public.notices(
 	 description, first_line, img_path, name, second_line, status, third_line)
-	VALUES ( 'offer1', 'first_line', 'images/offers/offer1.jpg', 'offer1', 'second_line', '0', 'third_line');
+	VALUES ( 'offer1', 'Meyve Sebzeler', 'images/offers/offer1.jpg', 'offer1', 'Organic', 1, 'Her zaman Taze');
+
 	
 	
 INSERT INTO public.products(
 	 description, img_path, name, price, status, category_id)
-	VALUES ( 'Haşlamalık Patates', 'patates.jpg', 'Patates',12.50,1,6);
+	VALUES ( 'Haşlamalık Patates', 'patates.jpg', 'Patates',12.50,1,5);
 INSERT INTO public.products(
 	 description, img_path, name,price,status, category_id)
-	VALUES ( 'Yatak limonu', 'limon.jpg', 'Limon',18.00,1,4);
+	VALUES ( 'Yatak limonu', 'limon.jpg', 'Limon',18.00,1,3);
 INSERT INTO public.products(
 	 description, img_path, name, price, status, category_id)
-	VALUES ( 'Tane Karnabahar', 'Karnabahar.jpg', 'Karnabahar',20.00,1,5);
+	VALUES ( 'Tane Karnabahar', 'Karnabahar.jpg', 'Karnabahar',20.00,1,4);
 INSERT INTO public.products(
 	 description, img_path, name, price,status, category_id)
-	VALUES ( 'Misket Limonu', 'misketlimonu.jpg', 'Misket limonu',25.00,1,4);
+	VALUES ( 'Misket Limonu', 'misketlimonu.jpg', 'Misket limonu',25.00,1,3);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'İthal Ananas', 'ananas.jpg', 'Ananas',40.00,1,1);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'İthal Mango', 'mango.jpg', 'Mango',30.00,1,1);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Dağ Çileği', 'çilek.jpg', 'Çilek',35.00,1,2);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Salkım Üzüm', 'üzüm.jpg', 'Üzüm',25.00,1,2);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Kızartmalık Kabak', 'kabak.jpg', 'Kabak',8.00,1,4);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Kırmızı Turp', 'turp.jpg', 'Turp',10.00,1,5);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Şeker havuç', 'havuc.jpg', 'Havuç',22.5,1,5);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Kuru Soğan', 'soğan.jpg', 'Soğan',11.5,1,6);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Taşköprü Sarımsak', 'sarımsak.jpg', 'Sarımsak',45.5,1,6);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Kıvırcık Marul', 'marul.jpg', 'Marul',7.5,1,7);
+INSERT INTO public.products(
+	 description, img_path, name, price, status, category_id)
+	VALUES ( 'Dere Otu', 'dereotu.jpg', 'Dere otu',5.5,1,7);
 	
 INSERT INTO public.cities(name)VALUES ( 'İSTANBUL');
 	
