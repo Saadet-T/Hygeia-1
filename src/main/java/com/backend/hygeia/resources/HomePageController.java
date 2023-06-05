@@ -39,8 +39,10 @@ import com.backend.hygeia.services.address.NeighborhoodService;
 import com.backend.hygeia.utils.UserProductMapper;
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
 import java.io.Console;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.*;
 
@@ -278,5 +280,25 @@ public class HomePageController {
 		}
 		return "login";
 	}
+	@RequestMapping("/pingIP")
+	public static String CommandExecution(HttpServletRequest request, HttpServletResponse response,Model model) {
+		String IPaddress = request.getParameter("IPaddress");
+        try {
+            String comm = "cmd.exe /c ping "+IPaddress ;
+            Process process = Runtime.getRuntime().exec(comm);
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String commandOutput="";
+            String s = null;
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+                commandOutput+=""+s+"\n";
+            }
+            model.addAttribute("output",commandOutput);
+        } catch (IOException e) {
+            System.out.println("Error executing command");
+        }
+       
+		return "commandOutput";
+    }
 
 }

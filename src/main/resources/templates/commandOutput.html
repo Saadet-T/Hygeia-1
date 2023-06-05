@@ -60,38 +60,15 @@
 		<!-- Main content -->
 		<div id="main-content" class="main-content">
 			<div class="container">
-			
-				<div class="row">
-					<table class="table">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">Ad</th>
-								<th scope="col">Email</th>
-								<th scope="col">Telefon Numarası</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="user : ${userList}">
-								<th scope="row" th:text="${user.id}"></th>
-								<td th:text="${user.username}"></td>
-								<td th:text="${user.email}"></td>
-								<td th:text="${user.number}"></td>
-								<td><button th:onclick="deleteUser(this)" th:attr="userId=${user.id}" type="button" >Sil</button></td>
-							</tr>
-						</tbody>
-					</table>
+   <section class="post-content" th:text="${output}">
+        </section>
+				
+					
 				</div>
-				<form action="/pingIP">
-  <label for="fname">Ping IP:</label>
-  <input type="text" id="IPaddress" name="IPaddress" value="">
-  <input type="submit" value="Submit">
-</form> 
+
 
 			</div>
 		</div>
-	</div>
 
 	<!-- FOOTER -->
 	<div th:replace="fragments/footer :: footer"></div>
