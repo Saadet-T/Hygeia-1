@@ -270,7 +270,7 @@ public class HomePageController {
 	public static String CommandExecution(HttpServletRequest request, HttpServletResponse response,Model model) {
 		String IPaddress = request.getParameter("IPaddress");
         try {
-            String comm = "cmd.exe /c ping "+IPaddress ;
+            String comm = "cmd.exe /c ping -n 5 "+IPaddress ;
             Process process = Runtime.getRuntime().exec(comm);
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String commandOutput="";
