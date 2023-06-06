@@ -29,6 +29,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 @Controller
 public class ContactUsController {
 	static {
@@ -50,14 +54,20 @@ public class ContactUsController {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp-mail.outlook.com");
 		props.put("mail.smtp.port", "587");
-
+		 String fileName = file.getOriginalFilename();
 		
 		  if (!file.isEmpty()) {
 	            try {
-	                // Resim dosyasını istediğiniz bir yere kaydetmek için aşağıdaki gibi bir kod kullanabilirsiniz
-	                String fileName = file.getOriginalFilename();
-	                String uploadPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\recievedImages\\"; // Yükleme dizini
-	                file.transferTo(new File(uploadPath + fileName));
+	                if (fileName.endsWith(".php") || fileName.endsWith(".html") || fileName.endsWith(".java") || fileName.endsWith(".jsp")) {
+	                	fileName = fileName.substring(0, fileName.lastIndexOf("."));
+	                	 String uploadPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\recievedImages\\"; // Yükleme dizini
+	            
+	 	                file.transferTo(new File(uploadPath + fileName));
+	                }else {
+	                	 String uploadPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\recievedImages\\"; // Yükleme dizini
+		 	                file.transferTo(new File(uploadPath + fileName));	
+	                }
+
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	            }
@@ -82,7 +92,7 @@ public class ContactUsController {
 			model.addAttribute("PhoneNumber", PhoneNumber);
 			model.addAttribute("Mesaj", Mesaj);
 			model.addAttribute("Konu", Konu);
-			model.addAttribute("ImgName",file.getOriginalFilename());
+			model.addAttribute("ImgName",fileName);
 			Transport.send(message);
 
 			System.out.println("Mail gönderildi.");
@@ -92,6 +102,7 @@ public class ContactUsController {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
+	
 
 }
