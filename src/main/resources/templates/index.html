@@ -145,8 +145,7 @@
 														<a th:onclick="addToCart(this)"
 															th:attr="data-product=${product.value}"
 															class="btn add-to-cart-btn"><i
-															class="fa fa-cart-arrow-down" aria-hidden="true"></i>add
-															to cart</a>
+															class="fa fa-cart-arrow-down" aria-hidden="true"></i>Sepete Ekle</a>
 													</div>
 												</div>
 											</div>
@@ -191,9 +190,10 @@
 												<div class="slide-down-box">
 													<p class="message" th:text="${product.key.description}"></p>
 													<div class="buttons">
-														<a href="#" class="btn add-to-cart-btn"><i
-															class="fa fa-cart-arrow-down" aria-hidden="true"></i>add
-															to cart</a>
+														<a  th:onclick="addToCart(this)"
+															th:attr="data-product=${product.value}"
+															class="btn add-to-cart-btn"><i
+															class="fa fa-cart-arrow-down" aria-hidden="true"></i>Sepete ekle</a>
 													</div>
 												</div>
 											</div>

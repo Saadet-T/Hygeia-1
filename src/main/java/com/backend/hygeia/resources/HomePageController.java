@@ -148,6 +148,10 @@ public class HomePageController {
 	String orderCompleated() {
 		return "orderCompleated";
 	}
+	@GetMapping("/log")
+	String applicationLog() {
+		return "application";
+	}
 	
 	@RequestMapping("/ForgetPassword")
 	public String fogetPassword(HttpServletRequest request, Model model){

@@ -57,7 +57,7 @@ public class AuthController {
 	private static final Logger logger = LogManager.getLogger("AuthController");
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public boolean authenticateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	    String username = request.getParameter("username");
 	    String password = request.getParameter("password");
 	    
@@ -81,14 +81,12 @@ public class AuthController {
 	        //Responsda Headre a jwt yi ekler bunun kullanımı biraz karışık do internal filterdaki yorum satırındaki ParseJWT operasyonunun kulllanır
 	        //response.addHeader("Authorization","Bearer "+jwt );
 
-	        return ResponseEntity.status(HttpStatus.FOUND)
-	                .header(HttpHeaders.LOCATION, "/")
-	                .body(null);
+	        return true;
 	        
 	    } catch (AuthenticationException e) {
 	        // Kullanıcı adı veya şifre hatalı olduğunda buraya düşer
 	    	logger.info( username +"kullanıcısı için hatalı giriş denemesi.");
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).header(HttpHeaders.LOCATION, "/login").body(null);
+	        return false;
 	        
 	    }
 	}
