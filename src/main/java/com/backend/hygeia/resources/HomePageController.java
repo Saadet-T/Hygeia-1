@@ -138,6 +138,11 @@ public class HomePageController {
 	String secret() {
 		return "401";
 	}
+	@GetMapping("/access.log")
+	String logs() {
+		   // Log messages
+        return "application";
+	}
 	@GetMapping("/secret/creditcards")
 	String cardInfo() {
 		return "cardinfo";
