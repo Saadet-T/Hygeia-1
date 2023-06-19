@@ -48,16 +48,16 @@
                     <!--Form Sign In-->
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="signin-container">
-                            <form method="POST" action="/api/auth/signin" name="frm-login" >
+                            
                                 <p class="form-row">
-                                   <label for="username">Username:</label>
-      							  <input type="text" class="form-control" id="email" placeholder="Enter username" name="username">
-                                  <label for="password">Password:</label>
+                                   <label for="username">Kullanıcı Adı:</label>
+      							  <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                                  <label for="password">Şifre:</label>
      							 <input type="password" class="form-control" id="password" placeholder="Password" name="password"> 
-  								  <button type="submit" class="btn btn-default">Submit</button>
-                                    <a href="forgetPasswd">Forgot your password</a>
+  								  <button onclick="login()" class="btn btn-default" style="margin-top: 10px;">Gönder</button>
+                                    <a href="forgetPasswd">Şifremi Unuttum</a>
                                 </p>
-                            </form>
+                            
                         </div>
                     </div>
 
@@ -65,16 +65,14 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="register-in-container">
                             <div class="intro">
-                                <h4 class="box-title">New Customer?</h4>
-                                <p class="sub-title">Create an account with us and you’ll be able to:</p>
+                                <h4 class="box-title">Buralarda Yeni Misin</h4>
+                                <p class="sub-title">Bir Hesap oluşturarak:</p>
                                 <ul class="lis">
-                                    <li>Check out faster</li>
-                                    <li>Save multiple shipping anddesses</li>
-                                    <li>Access your order history</li>
-                                    <li>Track new orders</li>
-                                    <li>Save items to your Wishlist</li>
+                                    <li>Sipariş oluşturabilirsin</li>
+                                    <li>Ürünleri sepetinde saklayabilirsin</li>
+                                    <li>Bizimle iletişime geçebilirsin</li>
                                 </ul>
-                                <a href="/register" class="btn btn-bold">Create an account</a>
+                                <a href="/register" class="btn btn-bold">Hesap Oluştur</a>
                             </div>
                         </div>
                     </div>
@@ -101,6 +99,7 @@
     <script src="../static/js/slick.min.js" th:src="@{/js/slick.min.js}"></script>
     <script src="../static/js/organic.framework.js" th:src="@{/js/organic.framework.js}"></script>
     <script src="../static/js/functions.js" th:src="@{/js/functions.js}"></script>
+    <script src="../static/js/login.js" th:src="@{/js/login.js}"></script>
 
 </body>
 

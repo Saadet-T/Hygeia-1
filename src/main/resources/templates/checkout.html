@@ -154,16 +154,13 @@
                                             <span class="stt-price" th:text="${shipmentPrice}"><span class="currencySymbol">£</span></span>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="subtotal-line">
-                                            <a href="#" class="link-forward">Promo/Gift Certificate</a>
-                                        </div>
-                                    </li>
+
                                     <li>
                                         <div class="subtotal-line">
                                             <b class="stt-name">Toplam Ödenecek Tutar:</b>
                                             <span class="stt-price" th:text="${shipmentPrice+totalPrice}"><span class="currencySymbol">£</span></span>
                                         </div>
+                                        <button class="btn btn-outline-success" onclick="orderCompleated()">Sipariş Oluştur</button>
                                     </li>
                                 </ul>
                             </div>

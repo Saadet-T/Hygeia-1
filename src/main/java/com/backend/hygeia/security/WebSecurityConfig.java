@@ -92,7 +92,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public FilterRegistrationBean<IPFilter> ipFilterRegistrationBean() {
         FilterRegistrationBean<IPFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new IPFilter());
-        registrationBean.addUrlPatterns("/adminUsers/*"); // Filtrenin uygulanacağı URL deseni
+        registrationBean.addUrlPatterns("/administration/*"); // Filtrenin uygulanacağı URL deseni
         return registrationBean;
     }
 }

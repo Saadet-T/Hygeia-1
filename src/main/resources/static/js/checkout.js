@@ -46,3 +46,6 @@ function populateMahalleler(ilceId) {
 	}
 }
 
+function orderCompleated(){
+	window.location.href = "/orderCompleated";
+}

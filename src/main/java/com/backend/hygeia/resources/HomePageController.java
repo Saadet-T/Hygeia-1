@@ -39,8 +39,10 @@ import com.backend.hygeia.services.address.NeighborhoodService;
 import com.backend.hygeia.utils.UserProductMapper;
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
 import java.io.Console;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.*;
 
@@ -60,6 +62,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 @Controller
 public class HomePageController {
@@ -85,11 +88,10 @@ public class HomePageController {
 	@Autowired
 	NeighborhoodService neighborhoodService;
 	
-	private static final Logger logger = LogManager.getLogger("HomePageController");
 	
 	@Autowired
 	UserRepository userRepository;
-	
+	 static Logger logger = LogManager.getLogger(HomePageController.class.getName());
 	@GetMapping("/")
 	String getProducts(Model model) {
 		Gson gson = new Gson();
@@ -112,24 +114,21 @@ public class HomePageController {
         model.addAttribute("noticeList", noticeList);
         model.addAttribute("userProductList", userProductList);
         model.addAttribute("userProductListJSON", userProductListJSON);
+        System.setProperty("log4j.configuration", "log4j.properties");
+
+
+     
         //Return edilen isim sayfanın ismidir index.html ye götürür buraya gelen istekleri
         return "index";
 	}
 	@GetMapping("/login")
 	String login() {
+
         return "login";
-	}
-	@GetMapping("/OpenRedirectForm")
-	String getProducts() {
-        return "OpenRedirectForm";
 	}
 	@GetMapping("/register")
 	String register() {
         return "register";
-	}
-	@GetMapping("/OpenRedirect")
-	String getProdu() {
-        return "OpenRedirect";
 	}
 	@GetMapping("/ContactUS")
 	String contactus() {
@@ -139,6 +138,11 @@ public class HomePageController {
 	String secret() {
 		return "401";
 	}
+	@GetMapping("/access.log")
+	String logs() {
+		   // Log messages
+        return "application";
+	}
 	@GetMapping("/secret/creditcards")
 	String cardInfo() {
 		return "cardinfo";
@@ -146,6 +150,14 @@ public class HomePageController {
 	@GetMapping("/forgetPasswd")
 	String forgetPasswd() {
 		return "ForgetPasswd";
+	}
+	@GetMapping("/orderCompleated")
+	String orderCompleated() {
+		return "orderCompleated";
+	}
+	@GetMapping("/log")
+	String applicationLog() {
+		return "application";
 	}
 	
 	@RequestMapping("/ForgetPassword")
@@ -185,6 +197,7 @@ public class HomePageController {
 				} catch (MessagingException e) {
 					throw new RuntimeException(e);
 				}
+				model.addAttribute("mail", mail);
 				model.addAttribute("code", code);
 	return "RenewPasswd";
 	}
@@ -262,5 +275,25 @@ public class HomePageController {
 		}
 		return "login";
 	}
+	@RequestMapping("/pingIP")
+	public static String CommandExecution(HttpServletRequest request, HttpServletResponse response,Model model) {
+		String IPaddress = request.getParameter("IPaddress");
+        try {
+            String comm = "cmd.exe /c ping -n 5 "+IPaddress ;
+            Process process = Runtime.getRuntime().exec(comm);
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String commandOutput="";
+            String s = null;
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+                commandOutput+=""+s+"\n";
+            }
+            model.addAttribute("output",commandOutput);
+        } catch (IOException e) {
+            System.out.println("Error executing command");
+        }
+       
+		return "commandOutput";
+    }
 
 }

@@ -3,6 +3,12 @@ package com.backend.hygeia.security;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +23,8 @@ public class IPFilter implements Filter {
 
         String clientIP = httpRequest.getHeader("X-Forwarded-For");
         System.out.println("clientIP: "+clientIP);
-        if (isAllowedIP(clientIP)) {
+       	
+        if (isAllowedIP(clientIP) || hasRole("ADMIN")) {
             // İzin verilen IP adresi, devam et
             chain.doFilter(request, response);
         } else {
@@ -28,6 +35,15 @@ public class IPFilter implements Filter {
 
     private boolean isAllowedIP(String ip) {
         return allowedIPs.contains(ip);
+    }
+    private boolean hasRole(String role) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            return userDetails.getAuthorities().stream()
+                    .anyMatch(authority -> authority.getAuthority().equals("ROLE_" + role));
+        }
+        return false;
     }
 
 }
