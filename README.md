@@ -3,6 +3,7 @@
 
 <h3>Eren Uğurlu</h3> <a href="https://www.linkedin.com/in/eren-uğurlu-a601941a8/">https://www.linkedin.com/in/eren-uğurlu-a601941a8/</a>
 
+
 Bitirme projesi olarak iki kişi zafiyetli bir web uygulaması geliştirdik. Projedeki ana amacımız
 raporlanabilir ve sektördeki zafiyetlere daha yakın bir uygulama gerçekleştirmekti böylece sektöre CTF
 çözerek girmeye çalışan arkadaşlara daha gerçekçi bir alıştırma ortamı oluşturmak istedik . Backendde
