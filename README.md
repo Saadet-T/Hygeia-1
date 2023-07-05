@@ -48,27 +48,28 @@ Web Uygulamasında bulunan zafiyetler aşağıdaki gibidir;
 
 <h2>-Ürün Listeleme ve Filtreleme:</h2>
 
-![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/4d5f9aaf-9e01-4454-a377-b32e82ca5da9)
+![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/2149ab20-d545-444a-8c1f-712351d124df)
 
 
 <h2>-Sepet Sistemi:</h2>
 
-![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/c066be38-dc2a-4511-8cd2-ddd08e3b669c)
+![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/99dafd55-d0f0-4a01-a3a0-8b100c32288f)
 
 
 <h2>-İletişim Sayfası:</h2>
 
-![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/eb829607-ac17-4600-bb6e-c8a59c3e11d0)
+![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/1fd62b04-626f-45ca-980a-e064522207f8)
 
 
 <h2>-Hesabım ve Kullanıcı Bilgilerinin değiştirilmesi:</h2>
 
-![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/a8543d3d-e639-4b83-845d-4427c43aa83c)
+![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/ac886d74-363c-483d-a1d0-778ae185a71c)
 
 
 <h2>-Admin Özel Yönetim Paneli:</h2>
 
-![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/a619a993-620c-4d6b-bb7b-d1be6af36799)
+![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/e1a06593-fac8-4747-9791-ddc3c2f57a4f)
+
 
 <h1>Zafiyet örnekleri;</h1>
 Aşağıdaki linkler üzerinden bitirme çalışmamızdan seçtiğimiz bazı zafiyetlerin açıklamasına erişebilirsiniz;
