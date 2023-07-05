@@ -12,6 +12,7 @@ SpringBoot frontend için ise Thymeleaf veri tabanı olarak PostgreSQL kullandı
 Web Uygulamasında bulunan zafiyetler aşağıdaki gibidir;
 
 •SQL Injection x2
+
 •Improper authentication via Weak Signing Key
 •Sensitive Data Exposure
 •Broken Access Control
