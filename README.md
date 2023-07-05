@@ -1,5 +1,6 @@
 # Hygeia Zafiyetli Web Uygulaması
-<h3>Saadet Elif Tokuoğlu </h3><br>
+<h3>Saadet Elif Tokuoğlu </h3>
+
 <h3>Eren Uğurlu</h3>
 
 Bitirme projesi olarak iki kişi zafiyetli bir web uygulaması geliştirdik. Projedeki ana amacımız
