@@ -1,8 +1,7 @@
 # Hygeia Zafiyetli Web Uygulaması
 <h3>Saadet Elif Tokuoğlu </h3> <a href="https://www.linkedin.com/in/eren-uğurlu-a601941a8/">https://www.linkedin.com/in/saadet-elif-tokuoğlu-ab2a59188/</a>
 
-<h3>Eren Uğurlu</h3> <a href="https://www.linkedin.com/in/eren-uğurlu-a601941a8/">https://www.linkedin.com/in/eren-uğurlu-a601941a8/</a> <br>
-
+<h3>Eren Uğurlu</h3> <a href="https://www.linkedin.com/in/eren-uğurlu-a601941a8/">https://www.linkedin.com/in/eren-uğurlu-a601941a8/</a>
 
 Bitirme projesi olarak iki kişi zafiyetli bir web uygulaması geliştirdik. Projedeki ana amacımız
 raporlanabilir ve sektördeki zafiyetlere daha yakın bir uygulama gerçekleştirmekti böylece sektöre CTF
