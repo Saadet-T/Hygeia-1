@@ -43,7 +43,7 @@ Web Uygulamasında bulunan zafiyetler aşağıdaki gibidir;
 
 <h2>-Kullanıcı Doğrulama ve Yetkilendirme Sistemi :</h2>
 
-![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/1c1b0793-a2ca-45f4-b8d3-9e18a60b702f)
+![image](https://github.com/ErenUgurlu/Hygeia/assets/68515706/a3fe324d-89cd-4df7-8aaf-172e1c1a31e8)
 
 
 <h2>-Ürün Listeleme ve Filtreleme:</h2>
