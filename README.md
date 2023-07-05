@@ -14,18 +14,31 @@ Web Uygulamasında bulunan zafiyetler aşağıdaki gibidir;
 •SQL Injection x2
 
 •Improper authentication via Weak Signing Key
+
 •Sensitive Data Exposure
+
 •Broken Access Control
+
 •Insecure Direct Object Reference (IDOR) x2
+
 •Cross Site Scripting
+
 •Security Misconfiguration
+
 •Cross Site Request Forgery
+
 •Insecure Design
+
 •File Upload
+
 •Mass Assignment
+
 •Security Logging and Monitoring Failures 
+
 •OS Command Injection
+
 •Open Redirect 
+
 
 <h1>Projenin ana yapısı;</h1>
 
