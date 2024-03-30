@@ -74,7 +74,6 @@ Web Uygulamasında bulunan zafiyetler aşağıdaki gibidir;
 <h1>Zafiyet örnekleri;</h1>
 Aşağıdaki linkler üzerinden bitirme çalışmamızdan seçtiğimiz bazı zafiyetlerin açıklamasına erişebilirsiniz;
 
-<h3>SQLi:</h3><a href="https://github.com/Saadet-T/HYGEIAVULN/blob/main/SQL.pdf">SQLi Dokümantasyon</a>
 <h3>Improper authentication via Weak Signing Key:</h3><a href="https://github.com/Saadet-T/HYGEIAVULN/blob/main/Improper%20authentication%20via%20Weak%20Signing%20Key.pdf">Improper authentication via Weak Signing Key Dokümantasyon</a>
 <h3>IDOR:</h3><a href="https://github.com/Saadet-T/HYGEIAVULN/blob/main/IDOR.pdf">IDOR DOkümantasyon</a>
 <h3>Security Misconfiguration:</h3><a href="https://github.com/Saadet-T/HYGEIAVULN/blob/main/Security%20Misconfiguration.pdf">Security Misconfiguration Dokümantasyon</a>
